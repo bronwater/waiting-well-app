@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Clock, User, BookOpen, HelpCircle, Brain } from "lucide-react";
+import { Clock, User, BookOpen, HelpCircle, Brain, Star, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/hooks/useTranslation";
 
@@ -15,6 +15,9 @@ export const Navigation = ({ activeSection, onSectionChange }: NavigationProps) 
     { id: "status", label: t("nav.overview"), icon: Clock },
     { id: "prescreening", label: "Pre-Screening", icon: Brain },
     { id: "info", label: t("nav.medicalInfo"), icon: User },
+    { id: "pain", label: "Pain Report", icon: AlertTriangle },
+    { id: "education", label: "Health Education", icon: BookOpen },
+    { id: "feedback", label: "Feedback", icon: Star },
     { id: "guidance", label: t("nav.guidance"), icon: BookOpen },
     { id: "faq", label: t("nav.faq"), icon: HelpCircle }
   ];

@@ -8,6 +8,9 @@ import { GuidanceSection } from "@/components/GuidanceSection";
 import { FAQSection } from "@/components/FAQSection";
 import { NotificationSettings } from "@/components/NotificationSettings";
 import { PreScreeningHub } from "@/components/PreScreeningHub";
+import { PainReporting } from "@/components/PainReporting";
+import { EducationalContent } from "@/components/EducationalContent";
+import { FeedbackRating } from "@/components/FeedbackRating";
 import { TranslationProvider } from "@/components/TranslationProvider";
 import { useToast } from "@/hooks/use-toast";
 
@@ -62,6 +65,12 @@ const Index = () => {
         return <PreScreeningHub />;
       case "info":
         return <MedicalInfoForm />;
+      case "pain":
+        return <PainReporting />;
+      case "education":
+        return <EducationalContent />;
+      case "feedback":
+        return <FeedbackRating />;
       case "guidance":
         return <GuidanceSection />;
       case "faq":
