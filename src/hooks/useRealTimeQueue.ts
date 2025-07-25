@@ -11,6 +11,10 @@ interface QueueData {
   lastUpdated: Date;
   urgencyLevel: 'low' | 'medium' | 'high';
   departmentLoad: number; // 0-100 percentage
+  emergency: number;
+  urgent: number;
+  standard: number;
+  total: number;
 }
 
 interface HospitalUpdate {
@@ -30,6 +34,10 @@ export const useRealTimeQueue = (patientId: string = 'patient-001') => {
     lastUpdated: new Date(),
     urgencyLevel: 'medium',
     departmentLoad: 75,
+    emergency: 4,
+    urgent: 8,
+    standard: 11,
+    total: 23,
   });
   
   const [isConnected, setIsConnected] = useState(false);
