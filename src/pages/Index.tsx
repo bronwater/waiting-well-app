@@ -11,6 +11,7 @@ import { PreScreeningHub } from "@/components/PreScreeningHub";
 import { PainReporting } from "@/components/PainReporting";
 import { EducationalContent } from "@/components/EducationalContent";
 import { FeedbackRating } from "@/components/FeedbackRating";
+import { NewsAnnouncements } from "@/components/NewsAnnouncements";
 import { TranslationProvider } from "@/components/TranslationProvider";
 import { useToast } from "@/hooks/use-toast";
 
@@ -21,6 +22,26 @@ const Index = () => {
   const [totalPatients, setTotalPatients] = useState(23);
   const [showNotification, setShowNotification] = useState(false);
   const { toast } = useToast();
+  
+  // Sample news data - in real app, this would come from an API
+  const [news] = useState([
+    {
+      id: '1',
+      title: 'System Maintenance Tonight',
+      content: 'We will be performing routine system maintenance tonight from 2:00 AM to 4:00 AM. Some services may be temporarily unavailable during this time.',
+      priority: 'medium' as const,
+      timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
+      author: 'IT Department'
+    },
+    {
+      id: '2',
+      title: 'New Visitor Policy',
+      content: 'Starting next week, visitor hours will be extended to 8:00 PM on weekdays. Please check with reception for the latest guidelines.',
+      priority: 'low' as const,
+      timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000),
+      author: 'Administration'
+    }
+  ]);
 
   // Simulate real-time updates
   useEffect(() => {
@@ -53,6 +74,7 @@ const Index = () => {
       case "status":
         return (
           <div className="space-y-6">
+            <NewsAnnouncements news={news} />
             <WaitingTimeCard 
               estimatedWait={estimatedWait}
               position={position}
