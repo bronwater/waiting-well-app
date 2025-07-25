@@ -1,21 +1,23 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Clock, User, BookOpen, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface NavigationProps {
   activeSection: string;
   onSectionChange: (section: string) => void;
 }
 
-const navItems = [
-  { id: "status", label: "Wait Status", icon: Clock },
-  { id: "info", label: "Medical Info", icon: User },
-  { id: "guidance", label: "Guidance", icon: BookOpen },
-  { id: "faq", label: "FAQ & Help", icon: HelpCircle }
-];
-
 export const Navigation = ({ activeSection, onSectionChange }: NavigationProps) => {
+  const { t } = useTranslation();
+  
+  const navItems = [
+    { id: "status", label: t("nav.overview"), icon: Clock },
+    { id: "info", label: t("nav.medicalInfo"), icon: User },
+    { id: "guidance", label: t("nav.guidance"), icon: BookOpen },
+    { id: "faq", label: t("nav.faq"), icon: HelpCircle }
+  ];
+
   return (
     <nav className="bg-card shadow-card border-b">
       <div className="container mx-auto px-4">

@@ -7,16 +7,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Heart, User, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export const MedicalInfoForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
     toast({
-      title: "Information Updated",
+      title: t("medical.saved"),
       description: "Your medical information has been saved to help provide better care.",
     });
   };
@@ -42,40 +44,40 @@ export const MedicalInfoForm = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <User className="h-5 w-5 text-primary" />
-          Medical Information
+          {t("medical.title")}
           <span className="text-xs bg-muted px-2 py-1 rounded-full font-normal">Optional</span>
         </CardTitle>
         <p className="text-sm text-muted-foreground">
-          Share any relevant information to help medical staff provide better care
+          {t("medical.subtitle")}
         </p>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="allergies">Allergies</Label>
-              <Input id="allergies" placeholder="None" />
+              <Label htmlFor="allergies">{t("medical.allergies")}</Label>
+              <Input id="allergies" placeholder={t("medical.allergiesPlaceholder")} />
             </div>
             <div>
-              <Label htmlFor="medications">Current Medications</Label>
-              <Input id="medications" placeholder="None" />
+              <Label htmlFor="medications">{t("medical.medications")}</Label>
+              <Input id="medications" placeholder={t("medical.medicationsPlaceholder")} />
             </div>
           </div>
           
           <div>
-            <Label htmlFor="conditions">Medical Conditions</Label>
+            <Label htmlFor="conditions">{t("medical.conditions")}</Label>
             <Textarea 
               id="conditions" 
-              placeholder="Any chronic conditions, previous surgeries, etc."
+              placeholder={t("medical.conditionsPlaceholder")}
               rows={3}
             />
           </div>
 
           <div>
-            <Label htmlFor="symptoms">Current Symptoms</Label>
+            <Label htmlFor="symptoms">{t("medical.symptoms")}</Label>
             <Textarea 
               id="symptoms" 
-              placeholder="Describe what brought you to the emergency room"
+              placeholder={t("medical.symptomsPlaceholder")}
               rows={2}
             />
           </div>
@@ -95,7 +97,7 @@ export const MedicalInfoForm = () => {
           </div>
 
           <Button type="submit" className="w-full" variant="success">
-            Save Information
+            {t("medical.save")}
           </Button>
         </form>
       </CardContent>

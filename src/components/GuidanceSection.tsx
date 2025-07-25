@@ -1,47 +1,50 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Coffee, Phone, Wifi, MapPin, AlertTriangle } from "lucide-react";
-
-const guidanceItems = [
-  {
-    icon: Clock,
-    title: "Stay Patient",
-    description: "Emergency cases are prioritized by severity, not arrival time",
-    type: "info"
-  },
-  {
-    icon: Coffee,
-    title: "Stay Hydrated",
-    description: "Drink water if permitted. Ask staff if you're unsure",
-    type: "tip"
-  },
-  {
-    icon: Phone,
-    title: "Keep Phone Charged",
-    description: "Charging stations available at the front desk",
-    type: "tip"
-  },
-  {
-    icon: Wifi,
-    title: "Free WiFi Available",
-    description: "Network: HospitalGuest | No password required",
-    type: "info"
-  },
-  {
-    icon: MapPin,
-    title: "Facilities Nearby",
-    description: "Restrooms, cafeteria, and pharmacy on this floor",
-    type: "info"
-  },
-  {
-    icon: AlertTriangle,
-    title: "Notify Staff if Symptoms Worsen",
-    description: "Don't hesitate to inform staff of any changes",
-    type: "important"
-  }
-];
+import { useTranslation } from "@/hooks/useTranslation";
 
 export const GuidanceSection = () => {
+  const { t } = useTranslation();
+  
+  const guidanceItems = [
+    {
+      icon: Clock,
+      title: t("guidance.stayCalm"),
+      description: t("guidance.stayCalm.desc"),
+      type: "info"
+    },
+    {
+      icon: Coffee,
+      title: "Stay Hydrated",
+      description: "Drink water if permitted. Ask staff if you're unsure",
+      type: "tip"
+    },
+    {
+      icon: Phone,
+      title: t("guidance.phone"),
+      description: t("guidance.phone.desc"),
+      type: "tip"
+    },
+    {
+      icon: Wifi,
+      title: "Free WiFi Available",
+      description: "Network: HospitalGuest | No password required",
+      type: "info"
+    },
+    {
+      icon: MapPin,
+      title: "Facilities Nearby",
+      description: "Restrooms, cafeteria, and pharmacy on this floor",
+      type: "info"
+    },
+    {
+      icon: AlertTriangle,
+      title: "Notify Staff if Symptoms Worsen",
+      description: "Don't hesitate to inform staff of any changes",
+      type: "important"
+    }
+  ];
+
   const getVariant = (type: string) => {
     switch (type) {
       case "important": return "destructive";
@@ -53,7 +56,7 @@ export const GuidanceSection = () => {
   return (
     <Card className="shadow-card">
       <CardHeader>
-        <CardTitle className="text-primary">While You Wait</CardTitle>
+        <CardTitle className="text-primary">{t("guidance.title")}</CardTitle>
         <p className="text-sm text-muted-foreground">
           Helpful information and guidance during your visit
         </p>

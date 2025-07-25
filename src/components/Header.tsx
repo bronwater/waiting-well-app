@@ -1,6 +1,6 @@
-import { Heart, Bell, Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Heart, Shield } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
+import { LanguageSelector } from "./LanguageSelector";
 
 interface HeaderProps {
   patientName?: string;
@@ -8,6 +8,8 @@ interface HeaderProps {
 }
 
 export const Header = ({ patientName = "Patient", showNotification = false }: HeaderProps) => {
+  const { t } = useTranslation();
+  
   return (
     <header className="bg-card shadow-card border-b">
       <div className="container mx-auto px-4 py-4">
@@ -17,8 +19,8 @@ export const Header = ({ patientName = "Patient", showNotification = false }: He
               <Heart className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-primary">UrgencyTrack</h1>
-              <p className="text-sm text-muted-foreground">Emergency Room Status</p>
+              <h1 className="text-xl font-bold text-primary">{t('header.title')}</h1>
+              <p className="text-sm text-muted-foreground">{t('header.subtitle')}</p>
             </div>
           </div>
           
@@ -28,18 +30,7 @@ export const Header = ({ patientName = "Patient", showNotification = false }: He
               <p className="text-xs text-muted-foreground">Stay informed about your wait</p>
             </div>
             
-            <Button variant="ghost" size="sm" className="relative">
-              <Bell className="h-5 w-5" />
-              {showNotification && (
-                <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center bg-destructive text-destructive-foreground">
-                  1
-                </Badge>
-              )}
-            </Button>
-            
-            <Button variant="ghost" size="sm" className="sm:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
+            <LanguageSelector />
           </div>
         </div>
       </div>

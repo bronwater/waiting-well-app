@@ -5,6 +5,8 @@ import { WaitingTimeCard } from "@/components/WaitingTimeCard";
 import { MedicalInfoForm } from "@/components/MedicalInfoForm";
 import { GuidanceSection } from "@/components/GuidanceSection";
 import { FAQSection } from "@/components/FAQSection";
+import { NotificationSettings } from "@/components/NotificationSettings";
+import { TranslationProvider } from "@/components/TranslationProvider";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -44,11 +46,14 @@ const Index = () => {
     switch (activeSection) {
       case "status":
         return (
-          <WaitingTimeCard 
-            estimatedWait={estimatedWait}
-            position={position}
-            totalPatients={totalPatients}
-          />
+          <div className="space-y-6">
+            <WaitingTimeCard 
+              estimatedWait={estimatedWait}
+              position={position}
+              totalPatients={totalPatients}
+            />
+            <NotificationSettings />
+          </div>
         );
       case "info":
         return <MedicalInfoForm />;
@@ -62,27 +67,29 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-calm">
-      <Header patientName="John D." showNotification={showNotification} />
-      <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
-      
-      <main className="container mx-auto px-4 py-6">
-        <div className="max-w-2xl mx-auto">
-          {renderContent()}
-        </div>
-      </main>
-      
-      <footer className="bg-card border-t mt-12">
-        <div className="container mx-auto px-4 py-6 text-center">
-          <p className="text-sm text-muted-foreground">
-            For medical emergencies, press the call button or dial 911
-          </p>
-          <p className="text-xs text-muted-foreground mt-1">
-            UrgencyTrack - Keeping you informed during your visit
-          </p>
-        </div>
-      </footer>
-    </div>
+    <TranslationProvider>
+      <div className="min-h-screen bg-gradient-calm">
+        <Header patientName="John D." showNotification={showNotification} />
+        <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
+        
+        <main className="container mx-auto px-4 py-6">
+          <div className="max-w-2xl mx-auto">
+            {renderContent()}
+          </div>
+        </main>
+        
+        <footer className="bg-card border-t mt-12">
+          <div className="container mx-auto px-4 py-6 text-center">
+            <p className="text-sm text-muted-foreground">
+              For medical emergencies, press the call button or dial 911
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">
+              UrgencyTrack - Keeping you informed during your visit
+            </p>
+          </div>
+        </footer>
+      </div>
+    </TranslationProvider>
   );
 };
 
