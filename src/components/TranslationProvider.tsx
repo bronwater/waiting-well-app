@@ -22,6 +22,13 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'header.title': 'UrgencyTrack',
         'header.subtitle': 'Your ER wait time tracker',
         
+        // Waiting Time Card
+        'waitTime.estimatedWait': 'Estimated Wait Time',
+        'waitTime.yourPosition': 'Your Position in Queue',
+        'waitTime.minutes': 'minutes',
+        'waitTime.updated': 'Last updated',
+        'waitTime.justNow': 'just now',
+        'waitTime.minutesAgo': 'minutes ago',
         
         // Navigation
         'nav.overview': 'Overview',
