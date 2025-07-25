@@ -63,36 +63,36 @@ export const NewsAnnouncements = ({ news }: NewsAnnouncementsProps) => {
       </h2>
       
       <ScrollArea className="w-full">
-        <div className="flex gap-3 pb-2">
+        <div className="flex gap-2 pb-2">
           {news.map((item, index) => (
             <Dialog key={item.id}>
               <DialogTrigger asChild>
                 <div
                   className={`
-                    flex-shrink-0 w-64 p-3 rounded-lg border bg-card cursor-pointer
+                    flex-shrink-0 w-48 p-2 rounded-md border bg-card cursor-pointer
                     ${item.priority === 'urgent' ? 'border-destructive' : 'border-border'} 
                     animate-fade-in hover-scale transition-all duration-200
-                    border-l-4 ${item.priority === 'urgent' ? 'border-l-destructive' : 'border-l-primary'}
-                    hover:shadow-md
+                    border-l-2 ${item.priority === 'urgent' ? 'border-l-destructive' : 'border-l-primary'}
+                    hover:shadow-sm
                   `}
                   style={{ 
                     animationDelay: `${index * 100}ms` 
                   }}
                 >
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-1.5">
                     {getPriorityIcon(item.priority)}
-                    <div className="flex-1 min-w-0 space-y-1">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-medium text-sm leading-tight line-clamp-1">{item.title}</h3>
-                        <Badge variant={getPriorityColor(item.priority) as any} className="text-xs shrink-0">
+                    <div className="flex-1 min-w-0 space-y-0.5">
+                      <div className="flex items-start justify-between gap-1">
+                        <h3 className="font-medium text-xs leading-tight line-clamp-1">{item.title}</h3>
+                        <Badge variant={getPriorityColor(item.priority) as any} className="text-[10px] px-1 py-0 shrink-0">
                           {t(`news.priority.${item.priority}`)}
                         </Badge>
                       </div>
-                      <p className="text-xs text-muted-foreground line-clamp-1 leading-relaxed">
+                      <p className="text-[10px] text-muted-foreground line-clamp-1 leading-relaxed">
                         {item.content}
                       </p>
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-75 pt-1">
-                        <Clock className="h-3 w-3" />
+                      <div className="flex items-center gap-1 text-[10px] text-muted-foreground opacity-75">
+                        <Clock className="h-2.5 w-2.5" />
                         <span className="truncate">{item.timestamp.toLocaleDateString()}</span>
                       </div>
                     </div>
