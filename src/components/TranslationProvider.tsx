@@ -101,6 +101,41 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'language.en': 'English',
         'language.es': 'Español',
         'language.fr': 'Français',
+        
+        // Educational Content
+        'education.title': 'Health Education Center',
+        'education.subtitle': 'Learn about your health conditions and treatment options',
+        'education.search': 'Search health topics, conditions, or treatments...',
+        'education.conditions': 'Health Conditions',
+        'education.treatments': 'Treatments & Procedures',
+        'education.readMore': 'Read More',
+        'education.viewGuide': 'View Guide',
+        'education.quickTips': 'Quick Health Tips',
+        'education.quickTipsDesc': 'Daily tips for better health and wellness',
+        'education.backToList': 'Back to List',
+        
+        // Article Content
+        'article.bloodPressure.title': 'Understanding High Blood Pressure',
+        'article.bloodPressure.desc': 'Learn about hypertension, its causes, symptoms, and management strategies.',
+        'article.bloodPressure.content': 'High blood pressure, or hypertension, occurs when the force of blood against artery walls is consistently too high. This condition affects millions worldwide and is often called the "silent killer" because it typically has no symptoms until serious complications develop.\n\nCauses include genetics, diet high in sodium, lack of physical activity, stress, and certain medical conditions. Regular monitoring and lifestyle changes like exercise, healthy diet, and medication when needed can effectively manage hypertension.',
+        
+        'article.diabetes.title': 'Managing Diabetes',
+        'article.diabetes.desc': 'Comprehensive guide to diabetes management, diet, and lifestyle changes.',
+        'article.diabetes.content': 'Diabetes is a group of metabolic disorders characterized by high blood sugar levels. Type 1 diabetes occurs when the pancreas produces little or no insulin, while Type 2 diabetes develops when the body becomes resistant to insulin.\n\nEffective management includes regular blood sugar monitoring, balanced nutrition, regular exercise, and medication adherence. Working with healthcare providers to develop a personalized management plan is essential for long-term health.',
+        
+        'article.anxiety.title': 'Understanding Anxiety',
+        'article.anxiety.desc': 'Learn about anxiety disorders, coping mechanisms, and treatment options.',
+        'article.anxiety.content': 'Anxiety is a normal emotion that becomes a disorder when it interferes with daily life. Common symptoms include excessive worry, restlessness, fatigue, difficulty concentrating, and physical symptoms like rapid heartbeat.\n\nTreatment options include cognitive-behavioral therapy, medication, mindfulness practices, and lifestyle changes. Learning coping strategies like deep breathing, progressive muscle relaxation, and grounding techniques can help manage anxiety symptoms.',
+        
+        'article.boneHealth.title': 'Bone Health and Osteoporosis',
+        'article.boneHealth.desc': 'Prevention and management of bone health issues as you age.',
+        'article.boneHealth.content': 'Osteoporosis is a condition where bones become weak and brittle, increasing fracture risk. Peak bone mass is typically reached by age 30, after which bone density gradually decreases.\n\nPrevention strategies include adequate calcium and vitamin D intake, regular weight-bearing exercise, avoiding smoking and excessive alcohol, and bone density screening. Treatment may include medications that slow bone loss or help build new bone tissue.',
+        
+        // Health Tips
+        'tip.hydration': 'Stay hydrated by drinking at least 8 glasses of water daily',
+        'tip.breathing': 'Take deep breaths to reduce stress and improve focus',
+        'tip.sleep': 'Get 7-9 hours of quality sleep each night for optimal recovery',
+        'tip.exercise': 'Take short walks throughout the day to improve circulation',
       },
       
       es: {
@@ -143,6 +178,34 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'language.en': 'English',
         'language.es': 'Español',
         'language.fr': 'Français',
+        
+        // Educational Content
+        'education.title': 'Centro de Educación de Salud',
+        'education.subtitle': 'Aprenda sobre sus condiciones de salud y opciones de tratamiento',
+        'education.search': 'Buscar temas de salud, condiciones o tratamientos...',
+        'education.conditions': 'Condiciones de Salud',
+        'education.treatments': 'Tratamientos y Procedimientos',
+        'education.readMore': 'Leer Más',
+        'education.viewGuide': 'Ver Guía',
+        'education.quickTips': 'Consejos Rápidos de Salud',
+        'education.quickTipsDesc': 'Consejos diarios para mejor salud y bienestar',
+        'education.backToList': 'Volver a la Lista',
+        
+        // Article Content
+        'article.bloodPressure.title': 'Entendiendo la Presión Arterial Alta',
+        'article.bloodPressure.desc': 'Aprenda sobre la hipertensión, sus causas, síntomas y estrategias de manejo.',
+        'article.diabetes.title': 'Manejando la Diabetes',
+        'article.diabetes.desc': 'Guía completa para el manejo de diabetes, dieta y cambios de estilo de vida.',
+        'article.anxiety.title': 'Entendiendo la Ansiedad',
+        'article.anxiety.desc': 'Aprenda sobre trastornos de ansiedad, mecanismos de afrontamiento y opciones de tratamiento.',
+        'article.boneHealth.title': 'Salud Ósea y Osteoporosis',
+        'article.boneHealth.desc': 'Prevención y manejo de problemas de salud ósea al envejecer.',
+        
+        // Health Tips
+        'tip.hydration': 'Manténgase hidratado bebiendo al menos 8 vasos de agua diariamente',
+        'tip.breathing': 'Respire profundamente para reducir el estrés y mejorar el enfoque',
+        'tip.sleep': 'Duerma de 7-9 horas de calidad cada noche para una recuperación óptima',
+        'tip.exercise': 'Camine cortas distancias durante el día para mejorar la circulación',
       },
       
       fr: {
@@ -160,6 +223,34 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'language.en': 'English',
         'language.es': 'Español',
         'language.fr': 'Français',
+        
+        // Educational Content
+        'education.title': 'Centre d\'Éducation Santé',
+        'education.subtitle': 'Apprenez sur vos conditions de santé et options de traitement',
+        'education.search': 'Rechercher sujets de santé, conditions ou traitements...',
+        'education.conditions': 'Conditions de Santé',
+        'education.treatments': 'Traitements et Procédures',
+        'education.readMore': 'Lire Plus',
+        'education.viewGuide': 'Voir Guide',
+        'education.quickTips': 'Conseils Santé Rapides',
+        'education.quickTipsDesc': 'Conseils quotidiens pour une meilleure santé et bien-être',
+        'education.backToList': 'Retour à la Liste',
+        
+        // Article Content
+        'article.bloodPressure.title': 'Comprendre l\'Hypertension Artérielle',
+        'article.bloodPressure.desc': 'Apprenez sur l\'hypertension, ses causes, symptômes et stratégies de gestion.',
+        'article.diabetes.title': 'Gérer le Diabète',
+        'article.diabetes.desc': 'Guide complet pour la gestion du diabète, régime et changements de mode de vie.',
+        'article.anxiety.title': 'Comprendre l\'Anxiété',
+        'article.anxiety.desc': 'Apprenez sur les troubles anxieux, mécanismes d\'adaptation et options de traitement.',
+        'article.boneHealth.title': 'Santé Osseuse et Ostéoporose',
+        'article.boneHealth.desc': 'Prévention et gestion des problèmes de santé osseuse avec l\'âge.',
+        
+        // Health Tips
+        'tip.hydration': 'Restez hydraté en buvant au moins 8 verres d\'eau par jour',
+        'tip.breathing': 'Respirez profondément pour réduire le stress et améliorer la concentration',
+        'tip.sleep': 'Dormez 7-9 heures de qualité chaque nuit pour une récupération optimale',
+        'tip.exercise': 'Faites de courtes promenades tout au long de la journée pour améliorer la circulation',
       },
     };
     

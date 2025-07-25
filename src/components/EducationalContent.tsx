@@ -9,45 +9,46 @@ import { useTranslation } from '@/hooks/useTranslation';
 
 export const EducationalContent = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedArticle, setSelectedArticle] = useState<number | null>(null);
   const { t } = useTranslation();
 
   const educationalContent = {
     conditions: [
       {
         id: 1,
-        title: "Understanding High Blood Pressure",
-        description: "Learn about hypertension, its causes, symptoms, and management strategies.",
+        title: t('article.bloodPressure.title'),
+        description: t('article.bloodPressure.desc'),
         category: "Cardiovascular",
         duration: "5 min read",
         icon: Heart,
-        content: "High blood pressure occurs when the force of blood against artery walls is consistently too high..."
+        content: t('article.bloodPressure.content')
       },
       {
         id: 2,
-        title: "Managing Diabetes",
-        description: "Comprehensive guide to diabetes management, diet, and lifestyle changes.",
+        title: t('article.diabetes.title'),
+        description: t('article.diabetes.desc'),
         category: "Endocrine",
         duration: "8 min read",
         icon: Heart,
-        content: "Diabetes is a group of metabolic disorders characterized by high blood sugar levels..."
+        content: t('article.diabetes.content')
       },
       {
         id: 3,
-        title: "Understanding Anxiety",
-        description: "Learn about anxiety disorders, coping mechanisms, and treatment options.",
+        title: t('article.anxiety.title'),
+        description: t('article.anxiety.desc'),
         category: "Mental Health",
         duration: "6 min read",
         icon: Brain,
-        content: "Anxiety is a normal emotion that becomes a disorder when it interferes with daily life..."
+        content: t('article.anxiety.content')
       },
       {
         id: 4,
-        title: "Bone Health and Osteoporosis",
-        description: "Prevention and management of bone health issues as you age.",
+        title: t('article.boneHealth.title'),
+        description: t('article.boneHealth.desc'),
         category: "Orthopedic",
         duration: "7 min read",
         icon: Bone,
-        content: "Osteoporosis is a condition where bones become weak and brittle..."
+        content: t('article.boneHealth.content')
       }
     ],
     treatments: [
@@ -88,23 +89,73 @@ export const EducationalContent = () => {
     item.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  if (selectedArticle) {
+    const article = educationalContent.conditions.find(item => item.id === selectedArticle);
+    if (article) {
+      const IconComponent = article.icon;
+      return (
+        <div className="space-y-6">
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => setSelectedArticle(null)}
+                  className="gap-2"
+                >
+                  ← {t('education.backToList')}
+                </Button>
+              </div>
+              <div className="flex items-center gap-3 mt-4">
+                <div className="p-3 rounded-lg bg-primary/10">
+                  <IconComponent className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <CardTitle className="text-2xl">{article.title}</CardTitle>
+                  <CardDescription className="mt-2">
+                    {article.description}
+                  </CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="prose max-w-none">
+                <div className="whitespace-pre-line text-foreground leading-relaxed">
+                  {article.content}
+                </div>
+              </div>
+              <div className="flex items-center gap-4 mt-6 pt-6 border-t text-sm text-muted-foreground">
+                <Badge variant="secondary">{article.category}</Badge>
+                <span className="flex items-center gap-1">
+                  <FileText className="h-4 w-4" />
+                  {article.duration}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
+  }
+
   return (
     <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <BookOpen className="h-5 w-5 text-primary" />
-            Health Education Center
+            {t('education.title')}
           </CardTitle>
           <CardDescription>
-            Learn about your health conditions and treatment options
+            {t('education.subtitle')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="relative">
             <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Search health topics, conditions, or treatments..."
+              placeholder={t('education.search')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -115,8 +166,8 @@ export const EducationalContent = () => {
 
       <Tabs defaultValue="conditions" className="space-y-4">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="conditions">Health Conditions</TabsTrigger>
-          <TabsTrigger value="treatments">Treatments & Procedures</TabsTrigger>
+          <TabsTrigger value="conditions">{t('education.conditions')}</TabsTrigger>
+          <TabsTrigger value="treatments">{t('education.treatments')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="conditions" className="space-y-4">
@@ -148,8 +199,12 @@ export const EducationalContent = () => {
                         {item.duration}
                       </span>
                     </div>
-                    <Button variant="outline" size="sm">
-                      Read More
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => setSelectedArticle(item.id)}
+                    >
+                      {t('education.readMore')}
                     </Button>
                   </div>
                 </CardContent>
@@ -185,7 +240,7 @@ export const EducationalContent = () => {
                     <span>{item.duration}</span>
                   </div>
                   <Button variant="outline" size="sm">
-                    View Guide
+                    {t('education.viewGuide')}
                   </Button>
                 </div>
               </CardContent>
@@ -196,28 +251,28 @@ export const EducationalContent = () => {
 
       <Card>
         <CardHeader>
-          <CardTitle>Quick Health Tips</CardTitle>
+          <CardTitle>{t('education.quickTips')}</CardTitle>
           <CardDescription>
-            Daily tips for better health and wellness
+            {t('education.quickTipsDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4">
             {[
               {
-                tip: "Stay hydrated by drinking at least 8 glasses of water daily",
+                tip: t('tip.hydration'),
                 category: "Nutrition"
               },
               {
-                tip: "Take deep breaths to reduce stress and improve focus",
+                tip: t('tip.breathing'),
                 category: "Mental Health"
               },
               {
-                tip: "Get 7-9 hours of quality sleep each night for optimal recovery",
+                tip: t('tip.sleep'),
                 category: "Sleep"
               },
               {
-                tip: "Take short walks throughout the day to improve circulation",
+                tip: t('tip.exercise'),
                 category: "Exercise"
               }
             ].map((item, index) => (
