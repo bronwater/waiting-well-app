@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Navigation } from "@/components/Navigation";
+import { WaitingTimeCard } from "@/components/WaitingTimeCard";
 import { MedicalInfoForm } from "@/components/MedicalInfoForm";
 import { GuidanceSection } from "@/components/GuidanceSection";
 import { FAQSection } from "@/components/FAQSection";
 import { NotificationSettings } from "@/components/NotificationSettings";
-import { WaitingTimeCard } from "@/components/WaitingTimeCardV2";
-import { AdvancedHub } from "@/components/AdvancedHub";
+import { PreScreeningHub } from "@/components/PreScreeningHub";
 import { TranslationProvider } from "@/components/TranslationProvider";
 import { useToast } from "@/hooks/use-toast";
 
@@ -48,7 +48,7 @@ const Index = () => {
       case "status":
         return (
           <div className="space-y-6">
-            <WaitingTimeCard
+            <WaitingTimeCard 
               estimatedWait={estimatedWait}
               position={position}
               totalPatients={totalPatients}
@@ -56,8 +56,8 @@ const Index = () => {
             <NotificationSettings />
           </div>
         );
-      case "advanced":
-        return <AdvancedHub />;
+      case "prescreening":
+        return <PreScreeningHub />;
       case "info":
         return <MedicalInfoForm />;
       case "guidance":
