@@ -97,7 +97,7 @@ export const EmergencyContactAlerts = () => {
   };
 
   const getNotificationPreview = () => {
-    return `🏥 UrgencyTrack Update: Your contact is currently in the ER waiting room at City Hospital. Estimated wait time: 45 minutes. Position in queue: #7. We'll keep you updated on any changes. For emergencies, call 911.`;
+    return `🏥 UrgencyTrack Update: Your contact is currently in the ER waiting room at City Hospital. We'll keep you updated on any changes. For emergencies, call 911.`;
   };
 
   return (

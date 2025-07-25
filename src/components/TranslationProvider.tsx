@@ -22,13 +22,6 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'header.title': 'UrgencyTrack',
         'header.subtitle': 'Your ER wait time tracker',
         
-        // Waiting Time Card
-        'waitTime.estimatedWait': 'Estimated Wait Time',
-        'waitTime.yourPosition': 'Your Position in Queue',
-        'waitTime.minutes': 'minutes',
-        'waitTime.updated': 'Last updated',
-        'waitTime.justNow': 'just now',
-        'waitTime.minutesAgo': 'minutes ago',
         
         // Navigation
         'nav.overview': 'Overview',
@@ -70,7 +63,7 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'faq.wait.title': 'Why is my wait time changing?',
         'faq.wait.content': 'Wait times fluctuate based on patient severity, new arrivals, and treatment complexity. More urgent cases are always prioritized.',
         'faq.leaving.title': 'Can I leave and come back?',
-        'faq.leaving.content': 'Please inform the front desk if you need to step out. Leaving without notice may affect your position in the queue.',
+        'faq.leaving.content': 'Please inform the front desk if you need to step out. Leaving without notice may affect your treatment timing.',
         'faq.pain.title': 'My pain is getting worse, what should I do?',
         'faq.pain.content': 'Immediately notify the nursing staff. They can reassess your condition and adjust your priority if needed.',
         'faq.insurance.title': 'What if I don\'t have insurance?',
