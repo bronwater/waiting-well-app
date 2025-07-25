@@ -6,6 +6,7 @@ import { MedicalInfoForm } from "@/components/MedicalInfoForm";
 import { GuidanceSection } from "@/components/GuidanceSection";
 import { FAQSection } from "@/components/FAQSection";
 import { NotificationSettings } from "@/components/NotificationSettings";
+import { PreScreeningHub } from "@/components/PreScreeningHub";
 import { TranslationProvider } from "@/components/TranslationProvider";
 import { useToast } from "@/hooks/use-toast";
 
@@ -55,6 +56,8 @@ const Index = () => {
             <NotificationSettings />
           </div>
         );
+      case "prescreening":
+        return <PreScreeningHub />;
       case "info":
         return <MedicalInfoForm />;
       case "guidance":
