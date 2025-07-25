@@ -3,6 +3,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Alert, AlertDescription } from "./ui/alert";
+import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
 interface NewsItem {
   id: string;
@@ -53,49 +54,52 @@ export const NewsAnnouncements = ({ news }: NewsAnnouncementsProps) => {
   }
 
   return (
-    <div className="space-y-3 animate-fade-in">
-      <h2 className="text-base font-medium flex items-center gap-2 text-muted-foreground">
+    <div className="space-y-2 animate-fade-in">
+      <h2 className="text-sm font-medium flex items-center gap-2 text-muted-foreground">
         <Bell className="h-4 w-4" />
         {t('news.title')}
       </h2>
       
-      <div className="space-y-2">
-        {news.map((item, index) => (
-          <Alert 
-            key={item.id} 
-            className={`
-              ${item.priority === 'urgent' ? 'border-destructive' : ''} 
-              animate-fade-in hover-scale transition-all duration-200 
-              border-l-4 ${item.priority === 'urgent' ? 'border-l-destructive' : 'border-l-primary'} 
-              text-sm py-3
-            `}
-            style={{ 
-              animationDelay: `${index * 100}ms` 
-            }}
-          >
-            <div className="flex items-start gap-3 w-full">
-              {getPriorityIcon(item.priority)}
-              <div className="flex-1 space-y-1.5 min-w-0">
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="font-medium text-sm truncate">{item.title}</h3>
-                  <Badge variant={getPriorityColor(item.priority) as any} className="text-xs shrink-0">
-                    {t(`news.priority.${item.priority}`)}
-                  </Badge>
-                </div>
-                <AlertDescription className="text-xs text-muted-foreground line-clamp-2">
-                  {item.content}
-                </AlertDescription>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground opacity-75">
-                  <Clock className="h-3 w-3" />
-                  <span>{item.timestamp.toLocaleString()}</span>
-                  <span>•</span>
-                  <span>{item.author}</span>
+      <ScrollArea className="w-full">
+        <div className="flex gap-3 pb-2">
+          {news.map((item, index) => (
+            <div
+              key={item.id}
+              className={`
+                flex-shrink-0 w-72 p-3 rounded-lg border bg-card
+                ${item.priority === 'urgent' ? 'border-destructive' : 'border-border'} 
+                animate-fade-in hover-scale transition-all duration-200
+                border-l-4 ${item.priority === 'urgent' ? 'border-l-destructive' : 'border-l-primary'}
+              `}
+              style={{ 
+                animationDelay: `${index * 100}ms` 
+              }}
+            >
+              <div className="flex items-start gap-2">
+                {getPriorityIcon(item.priority)}
+                <div className="flex-1 min-w-0 space-y-1">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="font-medium text-sm leading-tight line-clamp-1">{item.title}</h3>
+                    <Badge variant={getPriorityColor(item.priority) as any} className="text-xs shrink-0">
+                      {t(`news.priority.${item.priority}`)}
+                    </Badge>
+                  </div>
+                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                    {item.content}
+                  </p>
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-75 pt-1">
+                    <Clock className="h-3 w-3" />
+                    <span className="truncate">{item.timestamp.toLocaleDateString()}</span>
+                    <span>•</span>
+                    <span className="truncate">{item.author}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </Alert>
-        ))}
-      </div>
+          ))}
+        </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
     </div>
   );
 };
