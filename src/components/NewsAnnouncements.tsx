@@ -4,6 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Alert, AlertDescription } from "./ui/alert";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { useState } from "react";
 
 interface NewsItem {
   id: string;
@@ -63,39 +65,59 @@ export const NewsAnnouncements = ({ news }: NewsAnnouncementsProps) => {
       <ScrollArea className="w-full">
         <div className="flex gap-3 pb-2">
           {news.map((item, index) => (
-            <div
-              key={item.id}
-              className={`
-                flex-shrink-0 w-72 p-3 rounded-lg border bg-card
-                ${item.priority === 'urgent' ? 'border-destructive' : 'border-border'} 
-                animate-fade-in hover-scale transition-all duration-200
-                border-l-4 ${item.priority === 'urgent' ? 'border-l-destructive' : 'border-l-primary'}
-              `}
-              style={{ 
-                animationDelay: `${index * 100}ms` 
-              }}
-            >
-              <div className="flex items-start gap-2">
-                {getPriorityIcon(item.priority)}
-                <div className="flex-1 min-w-0 space-y-1">
-                  <div className="flex items-start justify-between gap-2">
-                    <h3 className="font-medium text-sm leading-tight line-clamp-1">{item.title}</h3>
-                    <Badge variant={getPriorityColor(item.priority) as any} className="text-xs shrink-0">
+            <Dialog key={item.id}>
+              <DialogTrigger asChild>
+                <div
+                  className={`
+                    flex-shrink-0 w-64 p-3 rounded-lg border bg-card cursor-pointer
+                    ${item.priority === 'urgent' ? 'border-destructive' : 'border-border'} 
+                    animate-fade-in hover-scale transition-all duration-200
+                    border-l-4 ${item.priority === 'urgent' ? 'border-l-destructive' : 'border-l-primary'}
+                    hover:shadow-md
+                  `}
+                  style={{ 
+                    animationDelay: `${index * 100}ms` 
+                  }}
+                >
+                  <div className="flex items-start gap-2">
+                    {getPriorityIcon(item.priority)}
+                    <div className="flex-1 min-w-0 space-y-1">
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="font-medium text-sm leading-tight line-clamp-1">{item.title}</h3>
+                        <Badge variant={getPriorityColor(item.priority) as any} className="text-xs shrink-0">
+                          {t(`news.priority.${item.priority}`)}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground line-clamp-1 leading-relaxed">
+                        {item.content}
+                      </p>
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-75 pt-1">
+                        <Clock className="h-3 w-3" />
+                        <span className="truncate">{item.timestamp.toLocaleDateString()}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="max-w-md">
+                <DialogHeader>
+                  <div className="flex items-center gap-2 mb-2">
+                    {getPriorityIcon(item.priority)}
+                    <DialogTitle className="flex-1">{item.title}</DialogTitle>
+                    <Badge variant={getPriorityColor(item.priority) as any}>
                       {t(`news.priority.${item.priority}`)}
                     </Badge>
                   </div>
-                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
-                    {item.content}
-                  </p>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-75 pt-1">
-                    <Clock className="h-3 w-3" />
-                    <span className="truncate">{item.timestamp.toLocaleDateString()}</span>
-                    <span>•</span>
-                    <span className="truncate">{item.author}</span>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <p className="text-sm leading-relaxed">{item.content}</p>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground pt-2 border-t">
+                    <Clock className="h-4 w-4" />
+                    <span>{item.timestamp.toLocaleDateString()} • {item.author}</span>
                   </div>
                 </div>
-              </div>
-            </div>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
         <ScrollBar orientation="horizontal" />
