@@ -69,7 +69,10 @@ export default {
 			},
 			backgroundImage: {
 				'gradient-calm': 'var(--gradient-calm)',
-				'gradient-primary': 'var(--gradient-primary)'
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-text-apple': 'var(--gradient-text-apple)',
+				'gradient-text-medical': 'var(--gradient-text-medical)',
+				'gradient-text-warm': 'var(--gradient-text-warm)'
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',

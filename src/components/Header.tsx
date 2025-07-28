@@ -19,7 +19,7 @@ export const Header = ({ patientName = "Patient", showNotification = false }: He
               <Heart className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-primary">{t('header.title')}</h1>
+              <h1 className="text-xl font-bold text-gradient-medical">{t('header.title')}</h1>
               <p className="text-sm text-muted-foreground">{t('header.subtitle')}</p>
             </div>
           </div>

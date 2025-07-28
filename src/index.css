@@ -41,6 +41,9 @@ All colors MUST be HSL.
 
     --gradient-calm: linear-gradient(135deg, hsl(200 80% 95%), hsl(140 60% 95%));
     --gradient-primary: linear-gradient(135deg, hsl(200 80% 55%), hsl(180 70% 60%));
+    --gradient-text-apple: linear-gradient(135deg, hsl(210 100% 60%), hsl(280 100% 70%));
+    --gradient-text-medical: linear-gradient(135deg, hsl(200 80% 55%), hsl(140 60% 60%));
+    --gradient-text-warm: linear-gradient(135deg, hsl(30 80% 60%), hsl(350 80% 65%));
     --shadow-soft: 0 4px 20px hsl(200 30% 80% / 0.3);
     --shadow-card: 0 2px 12px hsl(200 30% 70% / 0.15);
 
@@ -109,5 +112,28 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-gradient-apple {
+    background: var(--gradient-text-apple);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .text-gradient-medical {
+    background: var(--gradient-text-medical);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .text-gradient-warm {
+    background: var(--gradient-text-warm);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
