@@ -74,12 +74,16 @@ const Index = () => {
       case "status":
         return (
           <div className="space-y-6">
-            <NewsAnnouncements news={news} />
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-gradient-medical">Welcome, John Doe</h2>
+              <p className="text-muted-foreground mt-1">Stay informed about your visit</p>
+            </div>
             <WaitingTimeCard 
               estimatedWait={estimatedWait}
               position={position}
               totalPatients={totalPatients}
             />
+            <NewsAnnouncements news={news} />
             <NotificationSettings />
           </div>
         );
