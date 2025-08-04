@@ -7,8 +7,6 @@ import { MedicalInfoForm } from "@/components/MedicalInfoForm";
 import { GuidanceSection } from "@/components/GuidanceSection";
 import { FAQSection } from "@/components/FAQSection";
 import { NotificationSettings } from "@/components/NotificationSettings";
-import { PreScreeningHub } from "@/components/PreScreeningHub";
-import { PainReporting } from "@/components/PainReporting";
 import { EducationalContent } from "@/components/EducationalContent";
 import { FeedbackRating } from "@/components/FeedbackRating";
 import { NewsAnnouncements } from "@/components/NewsAnnouncements";
@@ -110,8 +108,6 @@ const Index = () => {
         );
       case "info":
         return <MedicalInfoForm />;
-      case "pain":
-        return <PainReporting />;
       case "education":
         return <EducationalContent />;
       case "feedback":
