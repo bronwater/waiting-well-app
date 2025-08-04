@@ -57,106 +57,68 @@ export const FeedbackRating = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Star className="h-5 w-5 text-primary" />
-            Rate Your Experience
-          </CardTitle>
-          <CardDescription>
-            Your feedback helps us improve patient care and service quality.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="text-center">
-            <p className="text-sm text-muted-foreground mb-4">
-              How would you rate your overall experience?
-            </p>
-            <div className="flex justify-center gap-1">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <button
-                  key={star}
-                  onClick={() => setRating(star)}
-                  onMouseEnter={() => setHoveredRating(star)}
-                  onMouseLeave={() => setHoveredRating(0)}
-                  className="p-1 transition-transform hover:scale-110"
-                >
-                  <Star
-                    className={`h-8 w-8 transition-colors ${
-                      star <= (hoveredRating || rating)
-                        ? 'fill-primary text-primary'
-                        : 'text-muted-foreground'
-                    }`}
-                  />
-                </button>
-              ))}
-            </div>
-            {rating > 0 && (
-              <p className="text-sm text-primary mt-2 font-medium">
-                {rating === 1 && "Poor"}
-                {rating === 2 && "Fair"}
-                {rating === 3 && "Good"}
-                {rating === 4 && "Very Good"}
-                {rating === 5 && "Excellent"}
-              </p>
-            )}
-          </div>
-
-          <div>
-            <label className="text-sm font-medium mb-2 block">
-              Additional Comments (Optional)
-            </label>
-            <Textarea
-              placeholder="Tell us about your experience, suggestions for improvement, or compliments for our staff..."
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-              className="min-h-24"
-            />
-          </div>
-
-          <Button onClick={handleSubmit} className="w-full gap-2">
-            <Send className="h-4 w-4" />
-            Submit Feedback
-          </Button>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <MessageSquare className="h-5 w-5 text-primary" />
-            Quick Feedback Categories
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 gap-3">
-            {[
-              { label: "Staff Friendliness", icon: "😊" },
-              { label: "Wait Time", icon: "⏱️" },
-              { label: "Cleanliness", icon: "✨" },
-              { label: "Communication", icon: "💬" },
-              { label: "Pain Management", icon: "❤️" },
-              { label: "Overall Care", icon: "🏥" }
-            ].map((category) => (
-              <Button
-                key={category.label}
-                variant="outline"
-                className="h-auto p-4 flex-col gap-2"
-                onClick={() => {
-                  toast({
-                    title: `Rate ${category.label}`,
-                    description: "Feature coming soon - detailed category rating.",
-                  });
-                }}
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Star className="h-5 w-5 text-primary" />
+          Rate Your Experience
+        </CardTitle>
+        <CardDescription>
+          Your feedback helps us improve patient care and service quality.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="text-center">
+          <p className="text-sm text-muted-foreground mb-4">
+            How would you rate your overall experience?
+          </p>
+          <div className="flex justify-center gap-1">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <button
+                key={star}
+                onClick={() => setRating(star)}
+                onMouseEnter={() => setHoveredRating(star)}
+                onMouseLeave={() => setHoveredRating(0)}
+                className="p-1 transition-transform hover:scale-110"
               >
-                <span className="text-xl">{category.icon}</span>
-                <span className="text-sm">{category.label}</span>
-              </Button>
+                <Star
+                  className={`h-8 w-8 transition-colors ${
+                    star <= (hoveredRating || rating)
+                      ? 'fill-primary text-primary'
+                      : 'text-muted-foreground'
+                  }`}
+                />
+              </button>
             ))}
           </div>
-        </CardContent>
-      </Card>
-    </div>
+          {rating > 0 && (
+            <p className="text-sm text-primary mt-2 font-medium">
+              {rating === 1 && "Poor"}
+              {rating === 2 && "Fair"}
+              {rating === 3 && "Good"}
+              {rating === 4 && "Very Good"}
+              {rating === 5 && "Excellent"}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label className="text-sm font-medium mb-2 block">
+            Additional Comments (Optional)
+          </label>
+          <Textarea
+            placeholder="Tell us about your experience, suggestions for improvement, or compliments for our staff..."
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            className="min-h-24"
+          />
+        </div>
+
+        <Button onClick={handleSubmit} className="w-full gap-2">
+          <Send className="h-4 w-4" />
+          Submit Feedback
+        </Button>
+      </CardContent>
+    </Card>
   );
 };
