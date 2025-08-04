@@ -21,11 +21,6 @@ const Index = () => {
   const [position, setPosition] = useState(8);
   const [totalPatients, setTotalPatients] = useState(23);
   const [showNotification, setShowNotification] = useState(false);
-  const [appointmentInfo] = useState({
-    doctor: "Dr. Sarah Mitchell",
-    department: "Emergency Medicine",
-    room: "ER-3"
-  });
   const { toast } = useToast();
   
   // Sample news data - in real app, this would come from an API
@@ -88,23 +83,6 @@ const Index = () => {
               position={position}
               totalPatients={totalPatients}
             />
-            <div className="bg-card rounded-lg p-4 border shadow-sm">
-              <h3 className="font-semibold text-lg mb-3">Your Appointment</h3>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Doctor:</span>
-                  <span className="font-medium">{appointmentInfo.doctor}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Department:</span>
-                  <span className="font-medium">{appointmentInfo.department}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Room:</span>
-                  <span className="font-medium">{appointmentInfo.room}</span>
-                </div>
-              </div>
-            </div>
             <NewsAnnouncements news={news} />
             <NotificationSettings />
           </div>

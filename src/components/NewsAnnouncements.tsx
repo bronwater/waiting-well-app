@@ -56,50 +56,49 @@ export const NewsAnnouncements = ({ news }: NewsAnnouncementsProps) => {
   }
 
   return (
-    <div className="space-y-2 animate-fade-in">
-      <h2 className="text-sm font-medium flex items-center gap-2 text-muted-foreground">
-        <Bell className="h-4 w-4" />
-        {t('news.title')}
+    <div className="space-y-4 animate-fade-in">
+      <h2 className="text-lg font-semibold flex items-center gap-2">
+        <Bell className="h-5 w-5" />
+        Important Announcements
       </h2>
       
-      <ScrollArea className="w-full">
-        <div className="flex gap-2 pb-2">
-          {news.map((item, index) => (
-            <Dialog key={item.id}>
-              <DialogTrigger asChild>
-                <div
-                  className={`
-                    flex-shrink-0 w-48 p-2 rounded-md border bg-card cursor-pointer
-                    ${item.priority === 'urgent' ? 'border-destructive' : 'border-border'} 
-                    animate-fade-in hover-scale transition-all duration-200
-                    border-l-2 ${item.priority === 'urgent' ? 'border-l-destructive' : 'border-l-primary'}
-                    hover:shadow-sm
-                  `}
-                  style={{ 
-                    animationDelay: `${index * 100}ms` 
-                  }}
-                >
-                  <div className="flex items-start gap-1.5">
-                    {getPriorityIcon(item.priority)}
-                    <div className="flex-1 min-w-0 space-y-0.5">
-                      <div className="flex items-start justify-between gap-1">
-                        <h3 className="font-medium text-xs leading-tight line-clamp-1">{item.title}</h3>
-                        <Badge variant={getPriorityColor(item.priority) as any} className="text-[10px] px-1 py-0 shrink-0">
-                          {t(`news.priority.${item.priority}`)}
-                        </Badge>
-                      </div>
-                      <p className="text-[10px] text-muted-foreground line-clamp-1 leading-relaxed">
-                        {item.content}
-                      </p>
-                      <div className="flex items-center gap-1 text-[10px] text-muted-foreground opacity-75">
-                        <Clock className="h-2.5 w-2.5" />
-                        <span className="truncate">{item.timestamp.toLocaleDateString()}</span>
-                      </div>
+      <div className="space-y-3">
+        {news.map((item, index) => (
+          <Dialog key={item.id}>
+            <DialogTrigger asChild>
+              <div
+                className={`
+                  w-full p-4 rounded-lg border bg-card cursor-pointer
+                  ${item.priority === 'urgent' ? 'border-destructive bg-destructive/5' : 'border-border'} 
+                  animate-fade-in hover-scale transition-all duration-200
+                  border-l-4 ${item.priority === 'urgent' ? 'border-l-destructive' : 'border-l-primary'}
+                  hover:shadow-md
+                `}
+                style={{ 
+                  animationDelay: `${index * 100}ms` 
+                }}
+              >
+                <div className="flex items-start gap-3">
+                  {getPriorityIcon(item.priority)}
+                  <div className="flex-1 space-y-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-semibold text-base leading-tight">{item.title}</h3>
+                      <Badge variant={getPriorityColor(item.priority) as any} className="text-xs px-2 py-1 shrink-0">
+                        {t(`news.priority.${item.priority}`)}
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                      {item.content}
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground opacity-75">
+                      <Clock className="h-3 w-3" />
+                      <span>{item.timestamp.toLocaleDateString()} • {item.author}</span>
                     </div>
                   </div>
                 </div>
-              </DialogTrigger>
-              <DialogContent className="max-w-md">
+              </div>
+            </DialogTrigger>
+            <DialogContent className="max-w-md">
                 <DialogHeader>
                   <div className="flex items-center gap-2 mb-2">
                     {getPriorityIcon(item.priority)}
@@ -116,12 +115,10 @@ export const NewsAnnouncements = ({ news }: NewsAnnouncementsProps) => {
                     <span>{item.timestamp.toLocaleDateString()} • {item.author}</span>
                   </div>
                 </div>
-              </DialogContent>
-            </Dialog>
-          ))}
-        </div>
-        <ScrollBar orientation="horizontal" />
-      </ScrollArea>
+            </DialogContent>
+          </Dialog>
+        ))}
+      </div>
     </div>
   );
 };
