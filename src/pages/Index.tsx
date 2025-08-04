@@ -21,6 +21,7 @@ const Index = () => {
   const [position, setPosition] = useState(8);
   const [totalPatients, setTotalPatients] = useState(23);
   const [showNotification, setShowNotification] = useState(false);
+  const [isBeingCalled, setIsBeingCalled] = useState(false);
   const { toast } = useToast();
   
   // Sample news data - in real app, this would come from an API
@@ -53,7 +54,17 @@ const Index = () => {
       
       // Occasionally advance position
       if (Math.random() > 0.7 && position > 1) {
-        setPosition(prev => prev - 1);
+        setPosition(prev => {
+          const newPos = prev - 1;
+          if (newPos === 1) {
+            setIsBeingCalled(true);
+            toast({
+              title: "🔔 You're being called!",
+              description: "Please proceed to your assigned room.",
+            });
+          }
+          return newPos;
+        });
         setShowNotification(true);
         toast({
           title: "Update: You're moving up!",
@@ -78,6 +89,16 @@ const Index = () => {
               <h2 className="text-2xl font-bold text-gradient-medical">Welcome, John Doe</h2>
               <p className="text-muted-foreground mt-1">Stay informed about your visit</p>
             </div>
+            
+            {isBeingCalled && (
+              <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-6 rounded-lg shadow-lg animate-pulse border-2 border-green-400">
+                <div className="text-center">
+                  <h3 className="text-xl font-bold mb-2">🔔 You're Being Called!</h3>
+                  <p className="text-green-50">Please proceed to your assigned room now.</p>
+                </div>
+              </div>
+            )}
+            
             <WaitingTimeCard 
               estimatedWait={estimatedWait}
               position={position}
