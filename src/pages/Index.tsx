@@ -14,7 +14,7 @@ import { TranslationProvider } from "@/components/TranslationProvider";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useToast } from "@/hooks/use-toast";
 
-const Index = () => {
+const IndexContent = () => {
   const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState("status");
   const [estimatedWait, setEstimatedWait] = useState("45 min");
@@ -148,10 +148,10 @@ const Index = () => {
   );
 };
 
-const WrappedIndex = () => (
+const Index = () => (
   <TranslationProvider>
-    <Index />
+    <IndexContent />
   </TranslationProvider>
 );
 
-export default WrappedIndex;
+export default Index;
