@@ -13,7 +13,6 @@ export const Navigation = ({ activeSection, onSectionChange }: NavigationProps) 
   
   const navItems = [
     { id: "status", label: t("nav.overview"), icon: Clock },
-    { id: "prescreening", label: "Pre-Screening", icon: Brain },
     { id: "info", label: t("nav.medicalInfo"), icon: User },
     { id: "pain", label: "Pain Report", icon: AlertTriangle },
     { id: "education", label: "Health Education", icon: BookOpen },

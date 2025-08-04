@@ -108,8 +108,6 @@ const Index = () => {
             <NotificationSettings />
           </div>
         );
-      case "prescreening":
-        return <PreScreeningHub />;
       case "info":
         return <MedicalInfoForm />;
       case "pain":
