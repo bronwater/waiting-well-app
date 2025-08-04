@@ -11,9 +11,11 @@ import { EducationalContent } from "@/components/EducationalContent";
 import { FeedbackRating } from "@/components/FeedbackRating";
 import { NewsAnnouncements } from "@/components/NewsAnnouncements";
 import { TranslationProvider } from "@/components/TranslationProvider";
+import { useTranslation } from "@/hooks/useTranslation";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState("status");
   const [estimatedWait, setEstimatedWait] = useState("45 min");
   const [position, setPosition] = useState(8);
@@ -57,16 +59,16 @@ const Index = () => {
           if (newPos === 1) {
             setIsBeingCalled(true);
             toast({
-              title: "🔔 You're being called!",
-              description: "Please proceed to your assigned room.",
+              title: `🔔 ${t('notifications.callTitle')}`,
+              description: t('notifications.callDesc'),
             });
           }
           return newPos;
         });
         setShowNotification(true);
         toast({
-          title: "Update: You're moving up!",
-          description: "Your estimated wait time has been updated.",
+          title: t('notifications.updateTitle'),
+          description: t('notifications.updateDesc'),
         });
         
         // Clear notification after 5 seconds
@@ -75,7 +77,7 @@ const Index = () => {
     }, 10000); // Update every 10 seconds
 
     return () => clearInterval(interval);
-  }, [position, toast]);
+  }, [position, toast, t]);
 
 
   const renderContent = () => {
@@ -84,15 +86,15 @@ const Index = () => {
         return (
           <div className="space-y-6">
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-gradient-medical">Welcome, John Doe</h2>
-              <p className="text-muted-foreground mt-1">Stay informed about your visit</p>
+              <h2 className="text-2xl font-bold text-gradient-medical">{t('welcome.title')}</h2>
+              <p className="text-muted-foreground mt-1">{t('welcome.subtitle')}</p>
             </div>
             
             {isBeingCalled && (
               <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-6 rounded-lg shadow-lg animate-pulse border-2 border-green-400">
                 <div className="text-center">
-                  <h3 className="text-xl font-bold mb-2">🔔 You're Being Called!</h3>
-                  <p className="text-green-50">Please proceed to your assigned room now.</p>
+                  <h3 className="text-xl font-bold mb-2">🔔 {t('beingCalled.title')}</h3>
+                  <p className="text-green-50">{t('beingCalled.message')}</p>
                 </div>
               </div>
             )}
@@ -122,30 +124,34 @@ const Index = () => {
   };
 
   return (
-    <TranslationProvider>
-      <div className="min-h-screen bg-gradient-calm">
-        <Header patientName="John D." showNotification={showNotification} />
-        <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
-        
-        <main className="container mx-auto px-4 py-6">
-          <div className="max-w-2xl mx-auto">
-            {renderContent()}
-          </div>
-        </main>
-        
-        <footer className="bg-card border-t mt-12">
-          <div className="container mx-auto px-4 py-6 text-center">
-            <p className="text-sm text-muted-foreground">
-              For medical emergencies, press the call button or dial 911
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              UrgencyTrack - Keeping you informed during your visit
-            </p>
-          </div>
-        </footer>
-      </div>
-    </TranslationProvider>
+    <div className="min-h-screen bg-gradient-calm">
+      <Header patientName="John D." showNotification={showNotification} />
+      <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
+      
+      <main className="container mx-auto px-4 py-6">
+        <div className="max-w-2xl mx-auto">
+          {renderContent()}
+        </div>
+      </main>
+      
+      <footer className="bg-card border-t mt-12">
+        <div className="container mx-auto px-4 py-6 text-center">
+          <p className="text-sm text-muted-foreground">
+            {t('footer.emergency')}
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            {t('footer.app')}
+          </p>
+        </div>
+      </footer>
+    </div>
   );
 };
 
-export default Index;
+const WrappedIndex = () => (
+  <TranslationProvider>
+    <Index />
+  </TranslationProvider>
+);
+
+export default WrappedIndex;
