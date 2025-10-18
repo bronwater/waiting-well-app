@@ -64,7 +64,7 @@ export const AdminNewsPublisher = ({ news, onPublish, onDelete }: AdminNewsPubli
     switch (priority) {
       case 'urgent': return 'destructive';
       case 'high': return 'destructive';
-      case 'medium': return 'warning';
+      case 'medium': return 'default';
       default: return 'secondary';
     }
   };

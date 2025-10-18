@@ -16,8 +16,9 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
   }, [language]);
 
   const t = (key: string): string => {
-    const translations = {
-      en: {
+    try {
+      const translations: Record<Language, Record<string, string>> = {
+        en: {
         // Header
         'header.title': 'UrgencyTrack',
         'header.subtitle': 'Your ER wait time tracker',
@@ -398,7 +399,17 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
       },
     };
     
-    return translations[language][key as keyof typeof translations['en']] || key;
+    const languageTranslations = translations[language];
+    if (!languageTranslations) {
+      console.error(`Language ${language} not found, falling back to English`);
+      return translations['en'][key] || key;
+    }
+    
+    return languageTranslations[key] || translations['en'][key] || key;
+    } catch (error) {
+      console.error(`Translation error for key "${key}":`, error);
+      return key;
+    }
   };
 
   const translationContext = {
