@@ -3,6 +3,8 @@ import { Shield, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "@/hooks/useTranslation";
 import { AdminNewsPublisher } from "@/components/AdminNewsPublisher";
+import { AdminPainReports } from "@/components/AdminPainReports";
+import { AdminOverview } from "@/components/AdminOverview";
 import { NewsAnnouncements } from "@/components/NewsAnnouncements";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -70,11 +72,21 @@ const AdminPanel = () => {
         </header>
 
         <main className="container mx-auto px-4 py-8">
-          <Tabs defaultValue="publish" className="space-y-6">
+          <Tabs defaultValue="overview" className="space-y-6">
             <TabsList>
+              <TabsTrigger value="overview">{t('admin.tabs.overview')}</TabsTrigger>
+              <TabsTrigger value="painReports">{t('admin.tabs.painReports')}</TabsTrigger>
               <TabsTrigger value="publish">{t('admin.tabs.publish')}</TabsTrigger>
               <TabsTrigger value="preview">{t('admin.tabs.preview')}</TabsTrigger>
             </TabsList>
+            
+            <TabsContent value="overview">
+              <AdminOverview />
+            </TabsContent>
+
+            <TabsContent value="painReports">
+              <AdminPainReports />
+            </TabsContent>
             
             <TabsContent value="publish">
               <AdminNewsPublisher 
