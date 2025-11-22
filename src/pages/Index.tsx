@@ -4,7 +4,6 @@ import { Navigation } from "@/components/Navigation";
 import { WaitingTimeCard } from "@/components/WaitingTimeCard";
 import { Clock, User, BookOpen, HelpCircle, Star } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
-import { motion, AnimatePresence } from "framer-motion";
 
 import { MedicalInfoForm } from "@/components/MedicalInfoForm";
 import { GuidanceSection } from "@/components/GuidanceSection";
@@ -91,30 +90,11 @@ const IndexContent = () => {
   }, [position, toast]);
 
 
-  const pageVariants = {
-    initial: { opacity: 0, x: -20 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: 20 }
-  };
-
-  const pageTransition = {
-    type: "tween" as const,
-    duration: 0.4
-  };
-
   const renderContent = () => {
     switch (activeSection) {
       case "status":
         return (
-          <motion.div
-            key="status"
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={pageVariants}
-            transition={pageTransition}
-            className="space-y-6"
-          >
+          <div className="space-y-6">
             <div className="text-center mb-6">
               <h2 className="text-2xl font-bold text-gradient-medical">Welcome, John Doe</h2>
               <p className="text-muted-foreground mt-1">Stay informed about your visit</p>
@@ -136,73 +116,18 @@ const IndexContent = () => {
             />
             <NewsAnnouncements news={news} />
             <NotificationSettings />
-          </motion.div>
+          </div>
         );
       case "info":
-        return (
-          <motion.div
-            key="info"
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={pageVariants}
-            transition={pageTransition}
-          >
-            <MedicalInfoForm />
-          </motion.div>
-        );
+        return <MedicalInfoForm />;
       case "education":
-        return (
-          <motion.div
-            key="education"
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={pageVariants}
-            transition={pageTransition}
-          >
-            <EducationalContent />
-          </motion.div>
-        );
+        return <EducationalContent />;
       case "feedback":
-        return (
-          <motion.div
-            key="feedback"
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={pageVariants}
-            transition={pageTransition}
-          >
-            <FeedbackRating />
-          </motion.div>
-        );
+        return <FeedbackRating />;
       case "guidance":
-        return (
-          <motion.div
-            key="guidance"
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={pageVariants}
-            transition={pageTransition}
-          >
-            <GuidanceSection />
-          </motion.div>
-        );
+        return <GuidanceSection />;
       case "faq":
-        return (
-          <motion.div
-            key="faq"
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={pageVariants}
-            transition={pageTransition}
-          >
-            <FAQSection />
-          </motion.div>
-        );
+        return <FAQSection />;
       default:
         return null;
     }
@@ -223,9 +148,7 @@ const IndexContent = () => {
       
       <main className="container mx-auto px-4 py-6">
         <div className="max-w-2xl mx-auto">
-          <AnimatePresence mode="wait">
-            {renderContent()}
-          </AnimatePresence>
+          {renderContent()}
         </div>
       </main>
       
