@@ -21,7 +21,7 @@ export const Navigation = ({ activeSection, onSectionChange }: NavigationProps) 
   ];
 
   return (
-    <nav className="bg-card shadow-card border-b">
+    <nav className="bg-card shadow-card border-b hidden sm:block">
       <div className="container mx-auto px-4">
         <div className="flex space-x-1 overflow-x-auto py-2">
           {navItems.map((item) => {
@@ -40,7 +40,7 @@ export const Navigation = ({ activeSection, onSectionChange }: NavigationProps) 
                 )}
               >
                 <IconComponent className="h-4 w-4" />
-                <span className="hidden sm:inline">{item.label}</span>
+                <span className="hidden md:inline">{item.label}</span>
               </Button>
             );
           })}

@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Navigation } from "@/components/Navigation";
 import { WaitingTimeCard } from "@/components/WaitingTimeCard";
+import { Clock, User, BookOpen, HelpCircle, Star } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 import { MedicalInfoForm } from "@/components/MedicalInfoForm";
 import { GuidanceSection } from "@/components/GuidanceSection";
@@ -14,6 +16,7 @@ import { TranslationProvider } from "@/components/TranslationProvider";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState("status");
   const [estimatedWait, setEstimatedWait] = useState("45 min");
   const [position, setPosition] = useState(8);
@@ -21,6 +24,15 @@ const Index = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [isBeingCalled, setIsBeingCalled] = useState(false);
   const { toast } = useToast();
+
+  const navItems = [
+    { id: "status", label: t("nav.overview"), icon: Clock },
+    { id: "info", label: t("nav.medicalInfo"), icon: User },
+    { id: "education", label: "Health Education", icon: BookOpen },
+    { id: "feedback", label: "Feedback", icon: Star },
+    { id: "guidance", label: t("nav.guidance"), icon: BookOpen },
+    { id: "faq", label: t("nav.faq"), icon: HelpCircle }
+  ];
   
   // Sample news data - in real app, this would come from an API
   const [news] = useState([
@@ -124,7 +136,15 @@ const Index = () => {
   return (
     <TranslationProvider>
       <div className="min-h-screen bg-gradient-calm">
-        <Header patientName="John D." showNotification={showNotification} />
+        <Header 
+          patientName="John D." 
+          showNotification={showNotification}
+          navigationItems={navItems.map(item => ({
+            ...item,
+            onClick: () => setActiveSection(item.id),
+            isActive: activeSection === item.id
+          }))}
+        />
         <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
         
         <main className="container mx-auto px-4 py-6">
