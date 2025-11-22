@@ -15,7 +15,7 @@ import { NewsAnnouncements } from "@/components/NewsAnnouncements";
 import { TranslationProvider } from "@/components/TranslationProvider";
 import { useToast } from "@/hooks/use-toast";
 
-const Index = () => {
+const IndexContent = () => {
   const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState("status");
   const [estimatedWait, setEstimatedWait] = useState("45 min");
@@ -134,36 +134,42 @@ const Index = () => {
   };
 
   return (
+    <div className="min-h-screen bg-gradient-calm">
+      <Header 
+        patientName="John D." 
+        showNotification={showNotification}
+        navigationItems={navItems.map(item => ({
+          ...item,
+          onClick: () => setActiveSection(item.id),
+          isActive: activeSection === item.id
+        }))}
+      />
+      <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
+      
+      <main className="container mx-auto px-4 py-6">
+        <div className="max-w-2xl mx-auto">
+          {renderContent()}
+        </div>
+      </main>
+      
+      <footer className="bg-card border-t mt-12">
+        <div className="container mx-auto px-4 py-6 text-center">
+          <p className="text-sm text-muted-foreground">
+            For medical emergencies, press the call button or dial 911
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            UrgencyTrack - Keeping you informed during your visit
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+const Index = () => {
+  return (
     <TranslationProvider>
-      <div className="min-h-screen bg-gradient-calm">
-        <Header 
-          patientName="John D." 
-          showNotification={showNotification}
-          navigationItems={navItems.map(item => ({
-            ...item,
-            onClick: () => setActiveSection(item.id),
-            isActive: activeSection === item.id
-          }))}
-        />
-        <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
-        
-        <main className="container mx-auto px-4 py-6">
-          <div className="max-w-2xl mx-auto">
-            {renderContent()}
-          </div>
-        </main>
-        
-        <footer className="bg-card border-t mt-12">
-          <div className="container mx-auto px-4 py-6 text-center">
-            <p className="text-sm text-muted-foreground">
-              For medical emergencies, press the call button or dial 911
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              UrgencyTrack - Keeping you informed during your visit
-            </p>
-          </div>
-        </footer>
-      </div>
+      <IndexContent />
     </TranslationProvider>
   );
 };
