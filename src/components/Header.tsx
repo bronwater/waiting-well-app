@@ -29,9 +29,9 @@ export const Header = ({ patientName = "Patient", showNotification = false, navi
             <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
               <Heart className="h-6 w-6 text-white" />
             </div>
-            <div className="hidden sm:block">
+            <div>
               <h1 className="text-xl font-bold text-gradient-medical">{t('header.title')}</h1>
-              <p className="text-sm text-muted-foreground">{t('header.subtitle')}</p>
+              <p className="text-sm text-muted-foreground hidden sm:block">{t('header.subtitle')}</p>
             </div>
           </div>
           
