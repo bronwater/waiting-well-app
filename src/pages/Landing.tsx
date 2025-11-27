@@ -2,9 +2,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Heart, Clock, Users, TrendingDown, Shield, Bell, CheckCircle2, ArrowRight, Mail, Phone, Building2 } from "lucide-react";
+import { Heart, CheckCircle2, ArrowRight, Mail, Phone, Building2 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import iconClock from "@/assets/icon-clock.png";
+import iconUsers from "@/assets/icon-users.png";
+import iconCommunication from "@/assets/icon-communication.png";
+import iconSecurity from "@/assets/icon-security.png";
+import iconCost from "@/assets/icon-cost.png";
+import iconDeploy from "@/assets/icon-deploy.png";
 
 const Landing = () => {
   const { toast } = useToast();
@@ -27,32 +33,32 @@ const Landing = () => {
 
   const features = [
     {
-      icon: Clock,
+      icon: iconClock,
       title: "Gestion du temps d'attente",
       description: "Informez vos patients en temps réel et réduisez leur anxiété grâce à des mises à jour automatiques."
     },
     {
-      icon: Users,
+      icon: iconUsers,
       title: "Expérience patient améliorée",
       description: "Offrez à vos patients un portail intuitif pour suivre leur parcours et accéder aux informations médicales."
     },
     {
-      icon: Bell,
+      icon: iconCommunication,
       title: "Notifications intelligentes",
       description: "Système de notifications automatiques pour tenir les patients informés à chaque étape de leur visite."
     },
     {
-      icon: Shield,
+      icon: iconSecurity,
       title: "Sécurité des données",
       description: "Protection complète des données médicales conformément aux normes de sécurité les plus strictes."
     },
     {
-      icon: TrendingDown,
+      icon: iconCost,
       title: "Réduction des coûts",
       description: "Optimisez vos ressources et réduisez les coûts opérationnels grâce à une meilleure gestion des flux."
     },
     {
-      icon: CheckCircle2,
+      icon: iconDeploy,
       title: "Déploiement rapide",
       description: "Solution clé en main, facile à intégrer dans votre infrastructure existante en quelques jours."
     }
@@ -145,8 +151,8 @@ const Landing = () => {
             {features.map((feature, index) => (
               <Card key={index} className="hover-scale border-border/50 hover:border-primary/50 transition-all duration-300">
                 <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <feature.icon className="h-6 w-6 text-primary" />
+                  <div className="w-16 h-16 rounded-lg flex items-center justify-center mb-4">
+                    <img src={feature.icon} alt={feature.title} className="w-full h-full object-contain" />
                   </div>
                   <CardTitle className="text-xl">{feature.title}</CardTitle>
                 </CardHeader>
