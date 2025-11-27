@@ -96,7 +96,10 @@ const Landing = () => {
 
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--secondary)/0.15),transparent_50%)]" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
             <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
@@ -121,8 +124,10 @@ const Landing = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
+      <section id="features" className="py-20 bg-muted/30 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background/50" />
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Une solution complète pour vos urgences
@@ -150,8 +155,10 @@ const Landing = () => {
       </section>
 
       {/* Benefits / ROI Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-background" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl" />
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Des résultats mesurables
@@ -176,8 +183,10 @@ const Landing = () => {
       </section>
 
       {/* Additional Benefits */}
-      <section className="py-20 bg-primary/5">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-primary/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,hsl(var(--primary)/0.1),transparent_70%)]" />
+        <div className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-secondary/5 to-transparent" />
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
@@ -216,8 +225,9 @@ const Landing = () => {
                 </div>
               </div>
               <div className="relative">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <Heart className="h-32 w-32 text-primary/30" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl" />
+                <div className="relative aspect-square rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center border border-primary/20 backdrop-blur-sm">
+                  <Heart className="h-32 w-32 text-primary/40" />
                 </div>
               </div>
             </div>
@@ -226,8 +236,10 @@ const Landing = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20">
-        <div className="container mx-auto px-4">
+      <section id="contact" className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-muted/50 via-background to-background" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
