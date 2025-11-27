@@ -95,27 +95,27 @@ const Landing = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden bg-primary">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_60%)]" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-white/20" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-white/20" />
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--secondary)/0.15),transparent_50%)]" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
               Transformez l'expérience patient dans vos{" "}
-              <span className="text-white/90 font-extrabold">urgences</span>
+              <span className="text-gradient-medical">urgences</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
               UrgencyTrack est la solution digitale qui améliore la communication avec vos patients 
               et optimise la gestion de vos flux d'urgence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button size="lg" className="text-lg bg-white text-primary hover:bg-white/90" onClick={() => window.location.href = '#contact'}>
+              <Button size="lg" className="text-lg" onClick={() => window.location.href = '#contact'}>
                 Demander une démo
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="text-lg border-white/30 text-white hover:bg-white/10" onClick={() => window.location.href = '#features'}>
+              <Button size="lg" variant="outline" className="text-lg" onClick={() => window.location.href = '#features'}>
                 Découvrir les fonctionnalités
               </Button>
             </div>
