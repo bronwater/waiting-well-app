@@ -95,7 +95,7 @@ const Landing = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden bg-primary/20">
+      <section className="relative py-20 md:py-32 overflow-hidden bg-primary/30">
         {/* Motif de grille subtil */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.05)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.05)_1px,transparent_1px)] bg-[size:6rem_6rem]" />
         
