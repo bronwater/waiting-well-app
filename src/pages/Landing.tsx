@@ -80,7 +80,7 @@ const Landing = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header Navigation */}
-      <header className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+      <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
@@ -147,7 +147,7 @@ const Landing = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {features.map((feature, index) => (
-              <Card key={index} className="hover-scale border-0 transition-all duration-300">
+              <Card key={index} className="hover-scale border-border/50 hover:border-primary/50 transition-all duration-300">
                 <CardHeader>
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                     <feature.icon className="h-6 w-6 text-primary" />
@@ -359,7 +359,7 @@ const Landing = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 bg-muted/30">
+      <footer className="border-t border-border py-12 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-3">
