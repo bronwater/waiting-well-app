@@ -95,16 +95,7 @@ const Landing = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-primary/25 to-secondary/20">
-        {/* Fond dégradé principal avec plus de couleur */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-secondary/15 to-primary/25" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-secondary/25 via-primary/10 to-secondary/20" />
-        
-        {/* Effets radiaux colorés plus prononcés */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,hsl(var(--primary)/0.3),transparent_40%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,hsl(var(--secondary)/0.25),transparent_45%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.15),transparent_60%)]" />
-        
+      <section className="relative py-20 md:py-32 overflow-hidden bg-primary/20">
         {/* Motif de grille subtil */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.05)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.05)_1px,transparent_1px)] bg-[size:6rem_6rem]" />
         
