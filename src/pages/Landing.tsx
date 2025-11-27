@@ -96,9 +96,6 @@ const Landing = () => {
 
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden bg-primary/20">
-        {/* Motif de grille subtil */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.05)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.05)_1px,transparent_1px)] bg-[size:6rem_6rem]" />
-        
         {/* Lignes lumineuses décoratives */}
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-secondary/40 to-transparent" />
@@ -134,7 +131,6 @@ const Landing = () => {
 
       {/* Features Section */}
       <section id="features" className="py-20 bg-muted/30 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background/50" />
         <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center mb-16">
