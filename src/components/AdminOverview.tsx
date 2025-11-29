@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Users, Clock, AlertTriangle, Activity } from 'lucide-react';
+import { Users, Clock, AlertTriangle, Activity, Bed, Stethoscope } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useTranslation } from '@/hooks/useTranslation';
+import { LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 interface PainReport {
   id: string;
@@ -26,38 +27,78 @@ export const AdminOverview = () => {
   }, []);
 
   const criticalReports = reports.filter(r => r.level >= 8 && !r.acknowledged).length;
-  const totalPatients = Math.floor(Math.random() * 20) + 15; // Simulated data
-  const avgWaitTime = Math.floor(Math.random() * 30) + 45; // Simulated data
-  const activeStaff = Math.floor(Math.random() * 5) + 8; // Simulated data
+  const totalPatients = Math.floor(Math.random() * 20) + 15;
+  const avgWaitTime = Math.floor(Math.random() * 30) + 45;
+  const activeStaff = Math.floor(Math.random() * 5) + 8;
+  const availableBeds = Math.floor(Math.random() * 10) + 5;
+  const availableDoctors = Math.floor(Math.random() * 8) + 12;
+
+  // Données pour le graphique d'affluence par heure
+  const hourlyData = [
+    { hour: '00h', patients: 2 },
+    { hour: '02h', patients: 1 },
+    { hour: '04h', patients: 3 },
+    { hour: '06h', patients: 5 },
+    { hour: '08h', patients: 12 },
+    { hour: '10h', patients: 18 },
+    { hour: '12h', patients: 22 },
+    { hour: '14h', patients: 20 },
+    { hour: '16h', patients: 25 },
+    { hour: '18h', patients: 15 },
+    { hour: '20h', patients: 10 },
+    { hour: '22h', patients: 6 },
+  ];
+
+  // Données pour le graphique en camembert (priorités)
+  const priorityData = [
+    { name: 'Critique', value: 3, color: '#ef4444' },
+    { name: 'Élevée', value: 7, color: '#f97316' },
+    { name: 'Moyenne', value: 12, color: '#eab308' },
+    { name: 'Basse', value: 8, color: '#22c55e' },
+  ];
 
   const stats = [
     {
-      title: t('admin.overview.totalPatients'),
+      title: 'Patients en attente',
       value: totalPatients,
       icon: Users,
       color: 'text-blue-600',
       bgColor: 'bg-blue-100',
     },
     {
-      title: t('admin.overview.avgWaitTime'),
+      title: 'Temps d\'attente moyen',
       value: `${avgWaitTime} min`,
       icon: Clock,
       color: 'text-orange-600',
       bgColor: 'bg-orange-100',
     },
     {
-      title: t('admin.overview.criticalReports'),
+      title: 'Urgences critiques',
       value: criticalReports,
       icon: AlertTriangle,
       color: 'text-red-600',
       bgColor: 'bg-red-100',
     },
     {
-      title: t('admin.overview.activeStaff'),
-      value: activeStaff,
-      icon: Activity,
+      title: 'Lits disponibles',
+      value: availableBeds,
+      icon: Bed,
       color: 'text-green-600',
       bgColor: 'bg-green-100',
+    },
+    {
+      title: 'Médecins disponibles',
+      value: availableDoctors,
+      icon: Stethoscope,
+      color: 'text-purple-600',
+      bgColor: 'bg-purple-100',
+    },
+    {
+      title: 'Personnel actif',
+      value: activeStaff,
+      icon: Activity,
+      color: 'text-teal-600',
+      bgColor: 'bg-teal-100',
     },
   ];
 
@@ -71,7 +112,8 @@ export const AdminOverview = () => {
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      {/* Statistiques principales */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {stats.map((stat) => (
           <Card key={stat.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -89,10 +131,69 @@ export const AdminOverview = () => {
         ))}
       </div>
 
+      {/* Graphiques */}
+      <div className="grid gap-4 md:grid-cols-2">
+        {/* Affluence par heure */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Affluence par heure</CardTitle>
+            <CardDescription>Distribution des patients sur 24h</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={hourlyData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="hour" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line 
+                  type="monotone" 
+                  dataKey="patients" 
+                  stroke="#3b82f6" 
+                  strokeWidth={2}
+                  name="Patients"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Répartition par priorité */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Répartition par priorité</CardTitle>
+            <CardDescription>Distribution des patients par niveau de priorité</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={priorityData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {priorityData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Activité récente */}
       <Card>
         <CardHeader>
-          <CardTitle>{t('admin.overview.recentActivity')}</CardTitle>
-          <CardDescription>Latest updates and events</CardDescription>
+          <CardTitle>Activité récente</CardTitle>
+          <CardDescription>Derniers événements et logs</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">

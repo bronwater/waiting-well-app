@@ -6,6 +6,7 @@ import { AdminNewsPublisher } from "@/components/AdminNewsPublisher";
 import { AdminPainReports } from "@/components/AdminPainReports";
 import { AdminOverview } from "@/components/AdminOverview";
 import { NewsAnnouncements } from "@/components/NewsAnnouncements";
+import { RealTimeQueue } from "@/components/RealTimeQueue";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TranslationProvider } from "@/components/TranslationProvider";
@@ -56,7 +57,8 @@ const AdminContent = ({ news, onPublish, onDelete }: AdminContentProps) => {
       <main className="container mx-auto px-4 py-8">
         <Tabs defaultValue="overview" className="space-y-6">
           <TabsList>
-            <TabsTrigger value="overview">{t('admin.tabs.overview')}</TabsTrigger>
+            <TabsTrigger value="overview">Vue d'ensemble</TabsTrigger>
+            <TabsTrigger value="queue">File d'attente</TabsTrigger>
             <TabsTrigger value="painReports">{t('admin.tabs.painReports')}</TabsTrigger>
             <TabsTrigger value="publish">{t('admin.tabs.publish')}</TabsTrigger>
             <TabsTrigger value="preview">{t('admin.tabs.preview')}</TabsTrigger>
@@ -64,6 +66,10 @@ const AdminContent = ({ news, onPublish, onDelete }: AdminContentProps) => {
           
           <TabsContent value="overview">
             <AdminOverview />
+          </TabsContent>
+
+          <TabsContent value="queue">
+            <RealTimeQueue />
           </TabsContent>
 
           <TabsContent value="painReports">
