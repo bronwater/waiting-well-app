@@ -199,7 +199,7 @@ export const AdminStatistics = () => {
                 <Tooltip />
                 <Legend />
                 <Line type="monotone" dataKey="patients" stroke="hsl(var(--primary))" name="Patients" />
-                <Line type="monotone" dataKey="waitTime" stroke="hsl(var(--secondary))" name="Temps (min)" />
+                <Line type="monotone" dataKey="waitTime" stroke="#f97316" name="Temps (min)" />
               </LineChart>
             </ResponsiveContainer>
           </CardContent>
@@ -268,7 +268,7 @@ export const AdminStatistics = () => {
                 <Tooltip />
                 <Legend />
                 <Bar dataKey="avgTime" fill="hsl(var(--primary))" name="Temps moyen (min)" />
-                <Bar dataKey="patients" fill="hsl(var(--secondary))" name="Patients traités" />
+                <Bar dataKey="patients" fill="#10b981" name="Patients traités" />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
