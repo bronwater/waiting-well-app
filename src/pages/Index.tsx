@@ -96,8 +96,8 @@ const IndexContent = () => {
         return (
           <div className="space-y-6">
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-gradient-medical">Welcome, John Doe</h2>
-              <p className="text-muted-foreground mt-1">Stay informed about your visit</p>
+              <h2 className="text-2xl font-bold text-gradient-medical">{t('welcome.greeting')}</h2>
+              <p className="text-muted-foreground mt-1">{t('welcome.subtitle')}</p>
             </div>
             
             {isBeingCalled && (
