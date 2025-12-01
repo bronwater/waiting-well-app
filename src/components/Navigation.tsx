@@ -14,8 +14,8 @@ export const Navigation = ({ activeSection, onSectionChange }: NavigationProps) 
   const navItems = [
     { id: "status", label: t("nav.overview"), icon: Clock },
     { id: "info", label: t("nav.medicalInfo"), icon: User },
-    { id: "education", label: "Health Education", icon: BookOpen },
-    { id: "feedback", label: "Feedback", icon: Star },
+    { id: "education", label: t("nav.education"), icon: BookOpen },
+    { id: "feedback", label: t("nav.feedback"), icon: Star },
     { id: "guidance", label: t("nav.guidance"), icon: BookOpen },
     { id: "faq", label: t("nav.faq"), icon: HelpCircle }
   ];
