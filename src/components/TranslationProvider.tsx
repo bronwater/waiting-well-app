@@ -93,6 +93,8 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         // Navigation
         'nav.overview': 'Overview',
         'nav.medicalInfo': 'Medical Info',
+        'nav.education': 'Health Education',
+        'nav.feedback': 'Feedback',
         'nav.guidance': 'Guidance',
         'nav.faq': 'FAQ & Help',
         
@@ -273,6 +275,8 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         // Navigation
         'nav.overview': 'Resumen',
         'nav.medicalInfo': 'Info Médica',
+        'nav.education': 'Educación en Salud',
+        'nav.feedback': 'Comentarios',
         'nav.guidance': 'Orientación',
         'nav.faq': 'FAQ y Ayuda',
         
@@ -398,7 +402,15 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'waitTime.updated': 'Dernière mise à jour',
         'waitTime.justNow': 'à l\'instant',
         'waitTime.minutesAgo': 'minutes',
+        
+        // Navigation
         'nav.overview': 'Aperçu',
+        'nav.medicalInfo': 'Info Médicale',
+        'nav.education': 'Éducation Santé',
+        'nav.feedback': 'Commentaires',
+        'nav.guidance': 'Conseils',
+        'nav.faq': 'FAQ et Aide',
+        
         'medical.title': 'Informations Médicales Optionnelles',
         'guidance.title': 'À Quoi S\'Attendre et Comment Se Préparer',
         'faq.title': 'Foire Aux Questions',
