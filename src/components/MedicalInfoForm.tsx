@@ -21,7 +21,7 @@ export const MedicalInfoForm = () => {
     setIsSubmitted(true);
     toast({
       title: t("medical.saved"),
-      description: "Your medical information has been saved to help provide better care.",
+      description: t("medical.savedDescription"),
     });
   };
 
@@ -33,8 +33,8 @@ export const MedicalInfoForm = () => {
             <div className="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center mx-auto">
               <Heart className="h-6 w-6 text-success" />
             </div>
-            <h3 className="font-semibold text-success">Information Saved</h3>
-            <p className="text-sm text-muted-foreground">Your details help us provide better care</p>
+            <h3 className="font-semibold text-success">{t("medical.successTitle")}</h3>
+            <p className="text-sm text-muted-foreground">{t("medical.successDescription")}</p>
           </div>
         </CardContent>
       </Card>
@@ -46,11 +46,11 @@ export const MedicalInfoForm = () => {
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="medical-info" className="gap-2">
           <User className="h-4 w-4" />
-          <span className="hidden sm:inline">Medical Info</span>
+          <span className="hidden sm:inline">{t("medical.tabMedicalInfo")}</span>
         </TabsTrigger>
         <TabsTrigger value="emergency-contacts" className="gap-2">
           <Users className="h-4 w-4" />
-          <span className="hidden sm:inline">Emergency Contacts</span>
+          <span className="hidden sm:inline">{t("medical.tabEmergencyContacts")}</span>
         </TabsTrigger>
       </TabsList>
 
@@ -60,7 +60,7 @@ export const MedicalInfoForm = () => {
             <CardTitle className="flex items-center gap-2">
               <User className="h-5 w-5 text-primary" />
               {t("medical.title")}
-              <span className="text-xs bg-muted px-2 py-1 rounded-full font-normal">Optional</span>
+              <span className="text-xs bg-muted px-2 py-1 rounded-full font-normal">{t("medical.optional")}</span>
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {t("medical.subtitle")}
@@ -100,14 +100,14 @@ export const MedicalInfoForm = () => {
               <div className="flex items-center space-x-2">
                 <Checkbox id="emergency-contact" />
                 <Label htmlFor="emergency-contact" className="text-sm">
-                  I have notified my emergency contact
+                  {t("medical.emergencyContactNotified")}
                 </Label>
               </div>
 
               <div className="flex items-start space-x-2 p-3 bg-muted/50 rounded-lg">
                 <AlertCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                 <p className="text-xs text-muted-foreground">
-                  This information is confidential and only shared with your care team
+                  {t("medical.confidentialityNote")}
                 </p>
               </div>
 
