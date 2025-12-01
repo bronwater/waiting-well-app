@@ -59,7 +59,7 @@ export const NewsAnnouncements = ({ news }: NewsAnnouncementsProps) => {
     <div className="space-y-4 animate-fade-in">
       <h2 className="text-lg font-semibold flex items-center gap-2">
         <Bell className="h-5 w-5" />
-        Important Announcements
+        {t('news.title')}
       </h2>
       
       <div className="space-y-3">
