@@ -69,16 +69,16 @@ const IndexContent = () => {
           if (newPos === 1) {
             setIsBeingCalled(true);
             toast({
-              title: "🔔 You're being called!",
-              description: "Please proceed to your assigned room.",
+              title: t('toast.beingCalled.title'),
+              description: t('toast.beingCalled.description'),
             });
           }
           return newPos;
         });
         setShowNotification(true);
         toast({
-          title: "Update: You're moving up!",
-          description: "Your estimated wait time has been updated.",
+          title: t('toast.movingUp.title'),
+          description: t('toast.movingUp.description'),
         });
         
         // Clear notification after 5 seconds
