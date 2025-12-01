@@ -8,7 +8,7 @@ interface TranslationProviderProps {
 export const TranslationProvider = ({ children }: TranslationProviderProps) => {
   const [language, setLanguage] = useState<Language>(() => {
     const saved = localStorage.getItem('urgencytrack-language');
-    return (saved as Language) || 'en';
+    return (saved as Language) || 'fr';
   });
 
   useEffect(() => {
@@ -22,6 +22,8 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         // Header
         'header.title': 'UrgencyTrack',
         'header.subtitle': 'Your ER wait time tracker',
+        'welcome.greeting': 'Welcome, John Doe',
+        'welcome.subtitle': 'Stay informed about your visit',
         'news.title': 'Important Announcements',
         'news.noNews': 'No announcements at this time.',
         'news.priority.low': 'Low',
@@ -191,6 +193,8 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         // Header
         'header.title': 'UrgencyTrack',
         'header.subtitle': 'Seguimiento de tiempo de espera en urgencias',
+        'welcome.greeting': 'Bienvenido, John Doe',
+        'welcome.subtitle': 'Manténgase informado sobre su visita',
         'news.title': 'Anuncios Importantes',
         'news.noNews': 'No hay anuncios en este momento.',
         'news.priority.low': 'Baja',
@@ -309,6 +313,8 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         // Header
         'header.title': 'UrgencyTrack',
         'header.subtitle': 'Suivi des temps d\'attente aux urgences',
+        'welcome.greeting': 'Bienvenue, John Doe',
+        'welcome.subtitle': 'Restez informé de votre visite',
         'news.title': 'Annonces Importantes',
         'news.noNews': 'Aucune annonce pour le moment.',
         'news.priority.low': 'Faible',
