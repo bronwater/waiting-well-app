@@ -35,21 +35,21 @@ export const EmergencyContactAlerts = () => {
   const [alertsSent, setAlertsSent] = useState(false);
 
   const relationships = [
-    'Spouse/Partner',
-    'Parent',
-    'Child',
-    'Sibling',
-    'Other Family',
-    'Friend',
-    'Caregiver',
-    'Other'
+    { key: 'emergency.relationshipSpouse', value: 'Spouse/Partner' },
+    { key: 'emergency.relationshipParent', value: 'Parent' },
+    { key: 'emergency.relationshipChild', value: 'Child' },
+    { key: 'emergency.relationshipSibling', value: 'Sibling' },
+    { key: 'emergency.relationshipFamily', value: 'Other Family' },
+    { key: 'emergency.relationshipFriend', value: 'Friend' },
+    { key: 'emergency.relationshipCaregiver', value: 'Caregiver' },
+    { key: 'emergency.relationshipOther', value: 'Other' }
   ];
 
   const addContact = () => {
     if (!currentContact.name || !currentContact.phone) {
       toast({
-        title: "Missing Information",
-        description: "Please provide at least a name and phone number.",
+        title: t('emergency.missingInfoTitle'),
+        description: t('emergency.missingInfoDescription'),
         variant: "destructive",
       });
       return;
@@ -66,16 +66,16 @@ export const EmergencyContactAlerts = () => {
     });
 
     toast({
-      title: "Contact Added",
-      description: `${currentContact.name} has been added to your emergency contacts.`,
+      title: t('emergency.contactAddedTitle'),
+      description: `${currentContact.name} ${t('emergency.contactAddedDescription')}`,
     });
   };
 
   const removeContact = (index: number) => {
     setContacts(prev => prev.filter((_, i) => i !== index));
     toast({
-      title: "Contact Removed",
-      description: "Emergency contact has been removed.",
+      title: t('emergency.contactRemovedTitle'),
+      description: t('emergency.contactRemovedDescription'),
     });
   };
 
@@ -91,13 +91,13 @@ export const EmergencyContactAlerts = () => {
     });
 
     toast({
-      title: "Alerts Sent",
-      description: `Notifications sent to ${contacts.length} emergency contact(s).`,
+      title: t('emergency.alertsSentTitle'),
+      description: `${t('emergency.alertsSentDescription')} ${contacts.length} ${t('emergency.alertsSentDescriptionEnd')}`,
     });
   };
 
   const getNotificationPreview = () => {
-    return `🏥 UrgencyTrack Update: Your contact is currently in the ER waiting room at City Hospital. We'll keep you updated on any changes. For emergencies, call 911.`;
+    return t('emergency.notificationMessage');
   };
 
   return (
@@ -107,13 +107,13 @@ export const EmergencyContactAlerts = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Users className="h-5 w-5 text-primary" />
-            Emergency Contact Notifications
+            {t('emergencyContact.title')}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="contact-name">Full Name *</Label>
+              <Label htmlFor="contact-name">{t('emergency.fullName')}</Label>
               <Input
                 id="contact-name"
                 value={currentContact.name}
@@ -122,17 +122,17 @@ export const EmergencyContactAlerts = () => {
               />
             </div>
             <div>
-              <Label htmlFor="relationship">Relationship</Label>
+              <Label htmlFor="relationship">{t('emergency.relationship')}</Label>
               <Select 
                 value={currentContact.relationship} 
                 onValueChange={(value) => setCurrentContact(prev => ({ ...prev, relationship: value }))}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select relationship" />
+                  <SelectValue placeholder={t('emergency.selectRelationship')} />
                 </SelectTrigger>
                 <SelectContent>
                   {relationships.map(rel => (
-                    <SelectItem key={rel} value={rel}>{rel}</SelectItem>
+                    <SelectItem key={rel.value} value={rel.value}>{t(rel.key)}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -141,7 +141,7 @@ export const EmergencyContactAlerts = () => {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="contact-phone">Phone Number *</Label>
+              <Label htmlFor="contact-phone">{t('emergency.phoneNumber')}</Label>
               <Input
                 id="contact-phone"
                 type="tel"
@@ -151,7 +151,7 @@ export const EmergencyContactAlerts = () => {
               />
             </div>
             <div>
-              <Label htmlFor="contact-email">Email Address</Label>
+              <Label htmlFor="contact-email">{t('emergency.emailAddress')}</Label>
               <Input
                 id="contact-email"
                 type="email"
@@ -163,7 +163,7 @@ export const EmergencyContactAlerts = () => {
           </div>
 
           <div className="space-y-2">
-            <Label>Notification Preferences</Label>
+            <Label>{t('emergency.notificationPreferences')}</Label>
             <div className="flex items-center space-x-2">
               <Checkbox 
                 id="notify-updates"
@@ -173,7 +173,7 @@ export const EmergencyContactAlerts = () => {
                 }
               />
               <Label htmlFor="notify-updates" className="text-sm">
-                Notify on wait time updates
+                {t('emergency.notifyUpdates')}
               </Label>
             </div>
             <div className="flex items-center space-x-2">
@@ -185,13 +185,13 @@ export const EmergencyContactAlerts = () => {
                 }
               />
               <Label htmlFor="notify-completion" className="text-sm">
-                Notify when appointment is complete
+                {t('emergency.notifyCompletion')}
               </Label>
             </div>
           </div>
 
           <Button onClick={addContact} className="w-full">
-            Add Emergency Contact
+            {t('emergency.addContact')}
           </Button>
         </CardContent>
       </Card>
@@ -201,10 +201,10 @@ export const EmergencyContactAlerts = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
-              <span>Emergency Contacts ({contacts.length})</span>
+              <span>{t('emergency.contactsList')} ({contacts.length})</span>
               <Button onClick={sendAlerts} disabled={alertsSent} className="gap-2">
                 <Send className="h-4 w-4" />
-                {alertsSent ? 'Alerts Sent' : 'Send Alerts'}
+                {alertsSent ? t('emergency.alertsSent') : t('emergency.sendAlerts')}
               </Button>
             </CardTitle>
           </CardHeader>
@@ -233,10 +233,10 @@ export const EmergencyContactAlerts = () => {
                     </div>
                     <div className="flex gap-2 mt-2">
                       {contact.notifyOnUpdates && (
-                        <Badge variant="secondary" className="text-xs">Updates</Badge>
+                        <Badge variant="secondary" className="text-xs">{t('emergency.updates')}</Badge>
                       )}
                       {contact.notifyOnCompletion && (
-                        <Badge variant="secondary" className="text-xs">Completion</Badge>
+                        <Badge variant="secondary" className="text-xs">{t('emergency.completion')}</Badge>
                       )}
                     </div>
                   </div>
@@ -246,7 +246,7 @@ export const EmergencyContactAlerts = () => {
                     onClick={() => removeContact(index)}
                     className="text-destructive hover:text-destructive"
                   >
-                    Remove
+                    {t('emergency.remove')}
                   </Button>
                 </div>
               ))}
@@ -261,7 +261,7 @@ export const EmergencyContactAlerts = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-blue-800">
               <Mail className="h-5 w-5" />
-              Notification Preview
+              {t('emergency.notificationPreview')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -271,7 +271,7 @@ export const EmergencyContactAlerts = () => {
               </p>
             </div>
             <p className="text-xs text-blue-700 mt-2">
-              This is how your emergency contacts will be notified about your status.
+              {t('emergency.previewDescription')}
             </p>
           </CardContent>
         </Card>
@@ -282,9 +282,9 @@ export const EmergencyContactAlerts = () => {
           <CardContent className="pt-6">
             <div className="text-center">
               <CheckCircle className="h-8 w-8 text-green-600 mx-auto mb-2" />
-              <h3 className="font-semibold text-green-800">Alerts Sent Successfully</h3>
+              <h3 className="font-semibold text-green-800">{t('emergency.alertsSuccessTitle')}</h3>
               <p className="text-sm text-green-700 mt-1">
-                Your emergency contacts have been notified of your current status.
+                {t('emergency.alertsSuccessDescription')}
               </p>
             </div>
           </CardContent>
