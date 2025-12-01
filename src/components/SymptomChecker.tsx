@@ -20,7 +20,7 @@ export const SymptomChecker = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m here to help assess your symptoms while you wait. Can you describe what brought you to the emergency room today?',
+      text: t('symptom.initialMessage'),
       sender: 'bot',
       timestamp: new Date(),
     }
@@ -38,7 +38,7 @@ export const SymptomChecker = () => {
         input.includes('unconscious') || input.includes('severe bleeding') ||
         input.includes('stroke') || input.includes('heart attack')) {
       return {
-        response: 'I understand you\'re experiencing serious symptoms. Please notify the medical staff immediately if you haven\'t already. These symptoms require urgent attention.',
+        response: t('symptom.highUrgencyResponse'),
         urgency: 'high'
       };
     }
@@ -47,14 +47,14 @@ export const SymptomChecker = () => {
     if (input.includes('pain') || input.includes('fever') || input.includes('nausea') ||
         input.includes('headache') || input.includes('injury')) {
       return {
-        response: 'Thank you for sharing that information. Can you rate your pain level from 1-10, and let me know if you have any other symptoms?',
+        response: t('symptom.mediumUrgencyResponse'),
         urgency: 'medium'
       };
     }
     
     // Low urgency
     return {
-      response: 'I see. Can you tell me more about when these symptoms started and if anything makes them better or worse?',
+      response: t('symptom.lowUrgencyResponse'),
       urgency: 'low'
     };
   };
@@ -87,7 +87,7 @@ export const SymptomChecker = () => {
       setTimeout(() => {
         const completionMessage: Message = {
           id: (Date.now() + 2).toString(),
-          text: 'Thank you for providing this information. I\'ve documented your symptoms for the medical team. They will review this when you\'re called for your appointment.',
+          text: t('symptom.completionMessage'),
           sender: 'bot',
           timestamp: new Date(),
         };
@@ -99,9 +99,9 @@ export const SymptomChecker = () => {
 
   const getUrgencyBadge = (urgency: 'low' | 'medium' | 'high') => {
     const variants = {
-      low: { variant: 'secondary' as const, icon: CheckCircle, text: 'Low Priority' },
-      medium: { variant: 'default' as const, icon: AlertCircle, text: 'Medium Priority' },
-      high: { variant: 'destructive' as const, icon: AlertCircle, text: 'High Priority' }
+      low: { variant: 'secondary' as const, icon: CheckCircle, text: t('symptom.lowPriority') },
+      medium: { variant: 'default' as const, icon: AlertCircle, text: t('symptom.mediumPriority') },
+      high: { variant: 'destructive' as const, icon: AlertCircle, text: t('symptom.highPriority') }
     };
     
     const config = variants[urgency];
@@ -121,7 +121,7 @@ export const SymptomChecker = () => {
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Bot className="h-5 w-5 text-primary" />
-            AI Symptom Assessment
+            {t('symptom.title')}
           </div>
           {getUrgencyBadge(urgencyLevel)}
         </CardTitle>
@@ -169,7 +169,7 @@ export const SymptomChecker = () => {
             <Input
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Describe your symptoms..."
+              placeholder={t('symptom.placeholder')}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
               className="flex-1"
             />
@@ -182,9 +182,9 @@ export const SymptomChecker = () => {
         {isAssessmentComplete && (
           <div className="text-center p-4 bg-success/10 rounded-lg">
             <CheckCircle className="h-8 w-8 text-success mx-auto mb-2" />
-            <p className="text-sm font-medium text-success">Assessment Complete</p>
+            <p className="text-sm font-medium text-success">{t('symptom.assessmentComplete')}</p>
             <p className="text-xs text-muted-foreground mt-1">
-              Your information has been shared with the medical team
+              {t('symptom.assessmentShared')}
             </p>
           </div>
         )}

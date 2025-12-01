@@ -160,6 +160,20 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'emergency.relationshipOther': 'Other',
         'emergency.notificationMessage': '🏥 UrgencyTrack Update: Your contact is currently in the ER waiting room at City Hospital. We\'ll keep you updated on any changes. For emergencies, call 911.',
         
+        // Symptom Checker
+        'symptom.title': 'AI Symptom Assessment',
+        'symptom.initialMessage': 'Hello! I\'m here to help assess your symptoms while you wait. Can you describe what brought you to the emergency room today?',
+        'symptom.highUrgencyResponse': 'I understand you\'re experiencing serious symptoms. Please notify the medical staff immediately if you haven\'t already. These symptoms require urgent attention.',
+        'symptom.mediumUrgencyResponse': 'Thank you for sharing that information. Can you rate your pain level from 1-10, and let me know if you have any other symptoms?',
+        'symptom.lowUrgencyResponse': 'I see. Can you tell me more about when these symptoms started and if anything makes them better or worse?',
+        'symptom.completionMessage': 'Thank you for providing this information. I\'ve documented your symptoms for the medical team. They will review this when you\'re called for your appointment.',
+        'symptom.placeholder': 'Describe your symptoms...',
+        'symptom.assessmentComplete': 'Assessment Complete',
+        'symptom.assessmentShared': 'Your information has been shared with the medical team',
+        'symptom.lowPriority': 'Low Priority',
+        'symptom.mediumPriority': 'Medium Priority',
+        'symptom.highPriority': 'High Priority',
+        
         // Guidance Section
         'guidance.title': 'What to Expect & How to Prepare',
         'guidance.stayCalm': 'Stay Calm and Comfortable',
@@ -390,6 +404,20 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'emergency.relationshipOther': 'Otro',
         'emergency.notificationMessage': '🏥 Actualización UrgencyTrack: Su contacto está actualmente en la sala de espera de urgencias en City Hospital. Le mantendremos informado de cualquier cambio. Para emergencias, llame al 911.',
         
+        // Symptom Checker
+        'symptom.title': 'Evaluación de Síntomas con IA',
+        'symptom.initialMessage': '¡Hola! Estoy aquí para ayudar a evaluar sus síntomas mientras espera. ¿Puede describir qué le trajo a la sala de emergencias hoy?',
+        'symptom.highUrgencyResponse': 'Entiendo que está experimentando síntomas graves. Por favor, notifique al personal médico inmediatamente si aún no lo ha hecho. Estos síntomas requieren atención urgente.',
+        'symptom.mediumUrgencyResponse': 'Gracias por compartir esa información. ¿Puede calificar su nivel de dolor del 1 al 10 y dígame si tiene otros síntomas?',
+        'symptom.lowUrgencyResponse': 'Entiendo. ¿Puede decirme más sobre cuándo comenzaron estos síntomas y si algo los mejora o empeora?',
+        'symptom.completionMessage': 'Gracias por proporcionar esta información. He documentado sus síntomas para el equipo médico. Lo revisarán cuando sea llamado para su cita.',
+        'symptom.placeholder': 'Describa sus síntomas...',
+        'symptom.assessmentComplete': 'Evaluación Completa',
+        'symptom.assessmentShared': 'Su información ha sido compartida con el equipo médico',
+        'symptom.lowPriority': 'Prioridad Baja',
+        'symptom.mediumPriority': 'Prioridad Media',
+        'symptom.highPriority': 'Prioridad Alta',
+        
         // Other translations would go here - abbreviated for space
         'guidance.title': 'Qué Esperar y Cómo Prepararse',
         'faq.title': 'Preguntas Frecuentes',
@@ -566,6 +594,20 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'emergency.relationshipCaregiver': 'Aidant',
         'emergency.relationshipOther': 'Autre',
         'emergency.notificationMessage': '🏥 Mise à jour UrgencyTrack : Votre contact est actuellement dans la salle d\'attente des urgences à City Hospital. Nous vous tiendrons informé de tout changement. Pour les urgences, composez le 911.',
+        
+        // Symptom Checker
+        'symptom.title': 'Évaluation des Symptômes par IA',
+        'symptom.initialMessage': 'Bonjour ! Je suis là pour vous aider à évaluer vos symptômes pendant que vous attendez. Pouvez-vous décrire ce qui vous a amené aux urgences aujourd\'hui ?',
+        'symptom.highUrgencyResponse': 'Je comprends que vous éprouvez des symptômes graves. Veuillez prévenir immédiatement le personnel médical si vous ne l\'avez pas déjà fait. Ces symptômes nécessitent une attention urgente.',
+        'symptom.mediumUrgencyResponse': 'Merci d\'avoir partagé cette information. Pouvez-vous évaluer votre niveau de douleur de 1 à 10 et me dire si vous avez d\'autres symptômes ?',
+        'symptom.lowUrgencyResponse': 'Je vois. Pouvez-vous m\'en dire plus sur le moment où ces symptômes ont commencé et si quelque chose les améliore ou les aggrave ?',
+        'symptom.completionMessage': 'Merci d\'avoir fourni ces informations. J\'ai documenté vos symptômes pour l\'équipe médicale. Ils les examineront lorsque vous serez appelé pour votre rendez-vous.',
+        'symptom.placeholder': 'Décrivez vos symptômes...',
+        'symptom.assessmentComplete': 'Évaluation Terminée',
+        'symptom.assessmentShared': 'Vos informations ont été partagées avec l\'équipe médicale',
+        'symptom.lowPriority': 'Priorité Faible',
+        'symptom.mediumPriority': 'Priorité Moyenne',
+        'symptom.highPriority': 'Priorité Élevée',
         
         'guidance.title': 'À Quoi S\'Attendre et Comment Se Préparer',
         'faq.title': 'Foire Aux Questions',
