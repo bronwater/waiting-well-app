@@ -103,8 +103,8 @@ const IndexContent = () => {
             {isBeingCalled && (
               <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-6 rounded-lg shadow-lg animate-pulse border-2 border-green-400">
                 <div className="text-center">
-                  <h3 className="text-xl font-bold mb-2">🔔 You're Being Called!</h3>
-                  <p className="text-green-50">Please proceed to your assigned room now.</p>
+                  <h3 className="text-xl font-bold mb-2">{t('alert.beingCalled.title')}</h3>
+                  <p className="text-green-50">{t('alert.beingCalled.description')}</p>
                 </div>
               </div>
             )}
