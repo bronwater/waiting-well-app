@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Shield, ArrowLeft } from "lucide-react";
+import { Shield, ArrowLeft, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "@/hooks/useTranslation";
+import { cn } from "@/lib/utils";
 import { AdminNewsPublisher } from "@/components/AdminNewsPublisher";
 import { AdminPainReports } from "@/components/AdminPainReports";
 import { AdminOverview } from "@/components/AdminOverview";
@@ -11,6 +12,7 @@ import { AdminStatistics } from "@/components/AdminStatistics";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { TranslationProvider } from "@/components/TranslationProvider";
 
 interface NewsItem {
@@ -30,6 +32,23 @@ interface AdminContentProps {
 
 const AdminContent = ({ news, onPublish, onDelete }: AdminContentProps) => {
   const { t } = useTranslation();
+  const [activeTab, setActiveTab] = useState("overview");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const tabs = [
+    { value: "overview", label: "Vue d'ensemble" },
+    { value: "queue", label: "File d'attente" },
+    { value: "statistics", label: "Statistiques" },
+    { value: "users", label: "Gestion utilisateurs" },
+    { value: "painReports", label: t('admin.tabs.painReports') },
+    { value: "publish", label: t('admin.tabs.publish') },
+    { value: "preview", label: t('admin.tabs.preview') },
+  ];
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -37,6 +56,36 @@ const AdminContent = ({ news, onPublish, onDelete }: AdminContentProps) => {
         <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              {/* Hamburger menu for mobile */}
+              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="sm:hidden h-8 w-8 flex-shrink-0">
+                    <Menu className="h-5 w-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-64 z-[100]">
+                  <SheetHeader>
+                    <SheetTitle>Menu Admin</SheetTitle>
+                  </SheetHeader>
+                  <nav className="flex flex-col gap-2 mt-6">
+                    {tabs.map((tab) => (
+                      <button
+                        key={tab.value}
+                        onClick={() => handleTabChange(tab.value)}
+                        className={cn(
+                          "w-full text-left px-4 py-3 rounded-md transition-colors",
+                          activeTab === tab.value
+                            ? "bg-primary text-primary-foreground font-medium"
+                            : "hover:bg-muted"
+                        )}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </nav>
+                </SheetContent>
+              </Sheet>
+
               <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
                 <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
               </div>
@@ -57,17 +106,23 @@ const AdminContent = ({ news, onPublish, onDelete }: AdminContentProps) => {
       </header>
 
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
-        <Tabs defaultValue="overview" className="space-y-4 sm:space-y-6">
-          <div className="overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
-            <TabsList className="inline-flex w-auto min-w-full sm:min-w-0">
-              <TabsTrigger value="overview" className="text-xs sm:text-sm whitespace-nowrap">Vue d'ensemble</TabsTrigger>
-              <TabsTrigger value="queue" className="text-xs sm:text-sm whitespace-nowrap">File d'attente</TabsTrigger>
-              <TabsTrigger value="statistics" className="text-xs sm:text-sm whitespace-nowrap">Statistiques</TabsTrigger>
-              <TabsTrigger value="users" className="text-xs sm:text-sm whitespace-nowrap">Gestion utilisateurs</TabsTrigger>
-              <TabsTrigger value="painReports" className="text-xs sm:text-sm whitespace-nowrap">{t('admin.tabs.painReports')}</TabsTrigger>
-              <TabsTrigger value="publish" className="text-xs sm:text-sm whitespace-nowrap">{t('admin.tabs.publish')}</TabsTrigger>
-              <TabsTrigger value="preview" className="text-xs sm:text-sm whitespace-nowrap">{t('admin.tabs.preview')}</TabsTrigger>
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4 sm:space-y-6">
+          {/* Desktop tabs */}
+          <div className="hidden sm:block">
+            <TabsList>
+              {tabs.map((tab) => (
+                <TabsTrigger key={tab.value} value={tab.value} className="text-sm">
+                  {tab.label}
+                </TabsTrigger>
+              ))}
             </TabsList>
+          </div>
+          
+          {/* Mobile: show current tab title */}
+          <div className="sm:hidden">
+            <h2 className="text-lg font-semibold text-foreground">
+              {tabs.find(tab => tab.value === activeTab)?.label}
+            </h2>
           </div>
           
           <TabsContent value="overview">
