@@ -407,7 +407,7 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'nav.overview': 'Aperçu',
         'nav.medicalInfo': 'Info Médicale',
         'nav.education': 'Éducation Santé',
-        'nav.feedback': 'Commentaires',
+        'nav.feedback': 'Avis',
         'nav.guidance': 'Conseils',
         'nav.faq': 'FAQ et Aide',
         
