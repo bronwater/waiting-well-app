@@ -43,7 +43,7 @@ export const WaitingTimeCard = ({ estimatedWait, position, totalPatients }: Wait
           <div className="text-4xl font-bold text-gradient-medical">{estimatedWait}</div>
           <div className="flex items-center justify-center gap-2 text-muted-foreground">
             <Users className="h-4 w-4" />
-            <span>{t('waitTime.yourPosition')}: #{position} of {totalPatients}</span>
+            <span>{t('waitTime.yourPosition')}: #{position} {t('waitTime.of')} {totalPatients}</span>
           </div>
           <div className="w-full bg-muted rounded-full h-2">
             <div 

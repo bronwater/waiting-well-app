@@ -37,8 +37,8 @@ export const Header = ({ patientName = "Patient", showNotification = false, navi
           
           <div className="flex items-center gap-4">
             <div className="text-right hidden lg:block">
-              <p className="text-sm font-medium">Welcome, {patientName}</p>
-              <p className="text-xs text-muted-foreground">Stay informed about your wait</p>
+              <p className="text-sm font-medium">{t('welcome.headerGreeting')}, {patientName}</p>
+              <p className="text-xs text-muted-foreground">{t('welcome.headerSubtitle')}</p>
             </div>
             
             <div className="hidden sm:block">
