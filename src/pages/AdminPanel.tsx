@@ -33,40 +33,42 @@ const AdminContent = ({ news, onPublish, onDelete }: AdminContentProps) => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-card shadow-card border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
-                <Shield className="h-6 w-6 text-white" />
+      <header className="bg-card shadow-card border-b sticky top-0 z-10">
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
+                <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-primary">{t('admin.title')}</h1>
-                <p className="text-sm text-muted-foreground">{t('admin.subtitle')}</p>
+              <div className="min-w-0">
+                <h1 className="text-base sm:text-xl font-bold text-primary truncate">{t('admin.title')}</h1>
+                <p className="text-xs sm:text-sm text-muted-foreground hidden sm:block">{t('admin.subtitle')}</p>
               </div>
             </div>
             
-            <Link to="/">
-              <Button variant="outline">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                {t('admin.backToApp')}
+            <Link to="/" className="flex-shrink-0">
+              <Button variant="outline" size="sm" className="h-8 sm:h-10">
+                <ArrowLeft className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">{t('admin.backToApp')}</span>
               </Button>
             </Link>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
-        <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList>
-            <TabsTrigger value="overview">Vue d'ensemble</TabsTrigger>
-            <TabsTrigger value="queue">File d'attente</TabsTrigger>
-            <TabsTrigger value="statistics">Statistiques</TabsTrigger>
-            <TabsTrigger value="users">Gestion utilisateurs</TabsTrigger>
-            <TabsTrigger value="painReports">{t('admin.tabs.painReports')}</TabsTrigger>
-            <TabsTrigger value="publish">{t('admin.tabs.publish')}</TabsTrigger>
-            <TabsTrigger value="preview">{t('admin.tabs.preview')}</TabsTrigger>
-          </TabsList>
+      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
+        <Tabs defaultValue="overview" className="space-y-4 sm:space-y-6">
+          <div className="overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
+            <TabsList className="inline-flex w-auto min-w-full sm:min-w-0">
+              <TabsTrigger value="overview" className="text-xs sm:text-sm whitespace-nowrap">Vue d'ensemble</TabsTrigger>
+              <TabsTrigger value="queue" className="text-xs sm:text-sm whitespace-nowrap">File d'attente</TabsTrigger>
+              <TabsTrigger value="statistics" className="text-xs sm:text-sm whitespace-nowrap">Statistiques</TabsTrigger>
+              <TabsTrigger value="users" className="text-xs sm:text-sm whitespace-nowrap">Gestion utilisateurs</TabsTrigger>
+              <TabsTrigger value="painReports" className="text-xs sm:text-sm whitespace-nowrap">{t('admin.tabs.painReports')}</TabsTrigger>
+              <TabsTrigger value="publish" className="text-xs sm:text-sm whitespace-nowrap">{t('admin.tabs.publish')}</TabsTrigger>
+              <TabsTrigger value="preview" className="text-xs sm:text-sm whitespace-nowrap">{t('admin.tabs.preview')}</TabsTrigger>
+            </TabsList>
+          </div>
           
           <TabsContent value="overview">
             <AdminOverview />
