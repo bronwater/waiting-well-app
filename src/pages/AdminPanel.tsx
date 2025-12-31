@@ -36,10 +36,10 @@ const AdminContent = ({ news, onPublish, onDelete }: AdminContentProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const tabs = [
-    { value: "overview", label: "Vue d'ensemble" },
-    { value: "queue", label: "File d'attente" },
-    { value: "statistics", label: "Statistiques" },
-    { value: "users", label: "Gestion utilisateurs" },
+    { value: "overview", label: t('admin.tabs.overview') },
+    { value: "queue", label: t('admin.tabs.queue') },
+    { value: "statistics", label: t('admin.tabs.statistics') },
+    { value: "users", label: t('admin.tabs.users') },
     { value: "painReports", label: t('admin.tabs.painReports') },
     { value: "publish", label: t('admin.tabs.publish') },
     { value: "preview", label: t('admin.tabs.preview') },
@@ -65,7 +65,7 @@ const AdminContent = ({ news, onPublish, onDelete }: AdminContentProps) => {
                 </SheetTrigger>
                 <SheetContent side="left" className="w-64 z-[100]">
                   <SheetHeader>
-                    <SheetTitle>Menu Admin</SheetTitle>
+                    <SheetTitle>{t('admin.menu')}</SheetTitle>
                   </SheetHeader>
                   <nav className="flex flex-col gap-2 mt-6">
                     {tabs.map((tab) => (

@@ -52,7 +52,6 @@ export const AdminUserManagement = () => {
 
   const fetchUsers = async () => {
     try {
-      // Fetch profiles
       const { data: profiles, error: profilesError } = await supabase
         .from("profiles")
         .select("*")
@@ -60,14 +59,12 @@ export const AdminUserManagement = () => {
 
       if (profilesError) throw profilesError;
 
-      // Fetch roles for each user
       const { data: roles, error: rolesError } = await supabase
         .from("user_roles")
         .select("*");
 
       if (rolesError) throw rolesError;
 
-      // Combine profiles with roles
       const usersWithRoles = profiles?.map(profile => ({
         ...profile,
         roles: roles?.filter(r => r.user_id === profile.id).map(r => r.role) || []
@@ -77,8 +74,8 @@ export const AdminUserManagement = () => {
     } catch (error: any) {
       console.error("Error fetching users:", error);
       toast({
-        title: "Erreur",
-        description: "Impossible de charger les utilisateurs",
+        title: t('admin.users.error'),
+        description: t('admin.users.loadError'),
         variant: "destructive",
       });
     }
@@ -98,8 +95,8 @@ export const AdminUserManagement = () => {
     } catch (error: any) {
       console.error("Error fetching login history:", error);
       toast({
-        title: "Erreur",
-        description: "Impossible de charger l'historique",
+        title: t('admin.users.error'),
+        description: t('admin.history.loadError'),
         variant: "destructive",
       });
     }
@@ -107,7 +104,6 @@ export const AdminUserManagement = () => {
 
   const handleCreateUser = async () => {
     try {
-      // Create user via Supabase Auth
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: newUserEmail,
         password: newUserPassword,
@@ -121,7 +117,6 @@ export const AdminUserManagement = () => {
       if (authError) throw authError;
 
       if (authData.user) {
-        // Add role
         const { error: roleError } = await supabase
           .from("user_roles")
           .insert({
@@ -132,11 +127,10 @@ export const AdminUserManagement = () => {
         if (roleError) throw roleError;
 
         toast({
-          title: "Succès",
-          description: "Utilisateur créé avec succès",
+          title: t('admin.users.success'),
+          description: t('admin.users.created'),
         });
 
-        // Reset form
         setNewUserEmail("");
         setNewUserPassword("");
         setNewUserFullName("");
@@ -147,33 +141,32 @@ export const AdminUserManagement = () => {
     } catch (error: any) {
       console.error("Error creating user:", error);
       toast({
-        title: "Erreur",
-        description: error.message || "Impossible de créer l'utilisateur",
+        title: t('admin.users.error'),
+        description: error.message || t('admin.users.createError'),
         variant: "destructive",
       });
     }
   };
 
   const handleDeleteUser = async (userId: string) => {
-    if (!confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) return;
+    if (!confirm(t('admin.users.confirmDelete'))) return;
 
     try {
-      // Delete user via admin API (requires service role)
       const { error } = await supabase.auth.admin.deleteUser(userId);
 
       if (error) throw error;
 
       toast({
-        title: "Succès",
-        description: "Utilisateur supprimé avec succès",
+        title: t('admin.users.success'),
+        description: t('admin.users.deleted'),
       });
 
       fetchUsers();
     } catch (error: any) {
       console.error("Error deleting user:", error);
       toast({
-        title: "Erreur",
-        description: "Impossible de supprimer l'utilisateur. Vérifiez vos permissions.",
+        title: t('admin.users.error'),
+        description: t('admin.users.deleteError'),
         variant: "destructive",
       });
     }
@@ -185,7 +178,6 @@ export const AdminUserManagement = () => {
       const hasRole = user?.roles.includes(role);
 
       if (hasRole) {
-        // Remove role
         const { error } = await supabase
           .from("user_roles")
           .delete()
@@ -194,7 +186,6 @@ export const AdminUserManagement = () => {
 
         if (error) throw error;
       } else {
-        // Add role
         const { error } = await supabase
           .from("user_roles")
           .insert({
@@ -206,16 +197,16 @@ export const AdminUserManagement = () => {
       }
 
       toast({
-        title: "Succès",
-        description: `Rôle ${hasRole ? "retiré" : "ajouté"}`,
+        title: t('admin.users.success'),
+        description: hasRole ? t('admin.users.roleRemoved') : t('admin.users.roleAdded'),
       });
 
       fetchUsers();
     } catch (error: any) {
       console.error("Error toggling role:", error);
       toast({
-        title: "Erreur",
-        description: "Impossible de modifier le rôle",
+        title: t('admin.users.error'),
+        description: t('admin.users.roleError'),
         variant: "destructive",
       });
     }
@@ -245,31 +236,40 @@ export const AdminUserManagement = () => {
     }
   };
 
+  const getRoleLabel = (role: string) => {
+    switch (role) {
+      case "admin": return t('admin.users.roleAdmin');
+      case "doctor": return t('admin.users.roleDoctor');
+      case "reception": return t('admin.users.roleReception');
+      default: return role;
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold">Gestion des utilisateurs</h2>
-          <p className="text-muted-foreground">Gérez les accès et les rôles</p>
+          <h2 className="text-2xl font-bold">{t('admin.users.title')}</h2>
+          <p className="text-muted-foreground">{t('admin.users.subtitle')}</p>
         </div>
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
           <DialogTrigger asChild>
             <Button>
               <UserPlus className="h-4 w-4 mr-2" />
-              Créer un utilisateur
+              {t('admin.users.create')}
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Créer un nouvel utilisateur</DialogTitle>
+              <DialogTitle>{t('admin.users.createTitle')}</DialogTitle>
               <DialogDescription>
-                Créez un compte avec un rôle spécifique
+                {t('admin.users.createDesc')}
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
               <div>
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('admin.users.email')}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -279,7 +279,7 @@ export const AdminUserManagement = () => {
                 />
               </div>
               <div>
-                <Label htmlFor="password">Mot de passe</Label>
+                <Label htmlFor="password">{t('admin.users.password')}</Label>
                 <Input
                   id="password"
                   type="password"
@@ -289,7 +289,7 @@ export const AdminUserManagement = () => {
                 />
               </div>
               <div>
-                <Label htmlFor="fullName">Nom complet</Label>
+                <Label htmlFor="fullName">{t('admin.users.fullName')}</Label>
                 <Input
                   id="fullName"
                   value={newUserFullName}
@@ -298,25 +298,25 @@ export const AdminUserManagement = () => {
                 />
               </div>
               <div>
-                <Label htmlFor="role">Rôle</Label>
+                <Label htmlFor="role">{t('admin.users.role')}</Label>
                 <Select value={newUserRole} onValueChange={(value: any) => setNewUserRole(value)}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="admin">Admin</SelectItem>
-                    <SelectItem value="doctor">Médecin</SelectItem>
-                    <SelectItem value="reception">Accueil</SelectItem>
+                    <SelectItem value="admin">{t('admin.users.roleAdmin')}</SelectItem>
+                    <SelectItem value="doctor">{t('admin.users.roleDoctor')}</SelectItem>
+                    <SelectItem value="reception">{t('admin.users.roleReception')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
             <DialogFooter>
               <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
-                Annuler
+                {t('admin.users.cancel')}
               </Button>
               <Button onClick={handleCreateUser}>
-                Créer
+                {t('admin.users.createBtn')}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -327,7 +327,7 @@ export const AdminUserManagement = () => {
       <div className="flex items-center space-x-2">
         <Search className="h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Rechercher par email ou nom..."
+          placeholder={t('admin.users.search')}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="max-w-sm"
@@ -337,9 +337,9 @@ export const AdminUserManagement = () => {
       {/* Users Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Liste des utilisateurs</CardTitle>
+          <CardTitle>{t('admin.users.list')}</CardTitle>
           <CardDescription>
-            {filteredUsers.length} utilisateur(s) trouvé(s)
+            {filteredUsers.length} {t('admin.users.found')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -347,11 +347,11 @@ export const AdminUserManagement = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Nom</TableHead>
-                  <TableHead>Rôles</TableHead>
-                  <TableHead>Date de création</TableHead>
-                  <TableHead>Actions</TableHead>
+                  <TableHead>{t('admin.users.email')}</TableHead>
+                  <TableHead>{t('admin.users.name')}</TableHead>
+                  <TableHead>{t('admin.users.roles')}</TableHead>
+                  <TableHead>{t('admin.users.createdAt')}</TableHead>
+                  <TableHead>{t('admin.users.actions')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -364,16 +364,16 @@ export const AdminUserManagement = () => {
                         {user.roles.length > 0 ? (
                           user.roles.map((role) => (
                             <Badge key={role} variant={getRoleBadgeVariant(role)}>
-                              {role}
+                              {getRoleLabel(role)}
                             </Badge>
                           ))
                         ) : (
-                          <Badge variant="outline">Aucun rôle</Badge>
+                          <Badge variant="outline">{t('admin.users.noRole')}</Badge>
                         )}
                       </div>
                     </TableCell>
                     <TableCell>
-                      {new Date(user.created_at).toLocaleDateString("fr-FR")}
+                      {new Date(user.created_at).toLocaleDateString()}
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
@@ -389,17 +389,17 @@ export const AdminUserManagement = () => {
                         >
                           <SelectTrigger className="w-[140px] h-8">
                             <Shield className="h-4 w-4 mr-2" />
-                            <SelectValue placeholder="Rôle" />
+                            <SelectValue placeholder={t('admin.users.role')} />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="admin">
-                              {user.roles.includes("admin") ? "✓ " : ""}Admin
+                              {user.roles.includes("admin") ? "✓ " : ""}{t('admin.users.roleAdmin')}
                             </SelectItem>
                             <SelectItem value="doctor">
-                              {user.roles.includes("doctor") ? "✓ " : ""}Médecin
+                              {user.roles.includes("doctor") ? "✓ " : ""}{t('admin.users.roleDoctor')}
                             </SelectItem>
                             <SelectItem value="reception">
-                              {user.roles.includes("reception") ? "✓ " : ""}Accueil
+                              {user.roles.includes("reception") ? "✓ " : ""}{t('admin.users.roleReception')}
                             </SelectItem>
                           </SelectContent>
                         </Select>
@@ -424,26 +424,26 @@ export const AdminUserManagement = () => {
       <Dialog open={isHistoryDialogOpen} onOpenChange={setIsHistoryDialogOpen}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
-            <DialogTitle>Historique des connexions</DialogTitle>
+            <DialogTitle>{t('admin.history.title')}</DialogTitle>
             <DialogDescription>
-              Dernières connexions de l'utilisateur
+              {t('admin.history.subtitle')}
             </DialogDescription>
           </DialogHeader>
           <ScrollArea className="h-[400px]">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Date</TableHead>
-                  <TableHead>IP</TableHead>
-                  <TableHead>Navigateur</TableHead>
-                  <TableHead>Statut</TableHead>
+                  <TableHead>{t('admin.history.date')}</TableHead>
+                  <TableHead>{t('admin.history.ip')}</TableHead>
+                  <TableHead>{t('admin.history.browser')}</TableHead>
+                  <TableHead>{t('admin.history.status')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {loginHistory.map((log) => (
                   <TableRow key={log.id}>
                     <TableCell>
-                      {new Date(log.login_at).toLocaleString("fr-FR")}
+                      {new Date(log.login_at).toLocaleString()}
                     </TableCell>
                     <TableCell>{log.ip_address || "-"}</TableCell>
                     <TableCell className="max-w-[200px] truncate">
@@ -451,7 +451,7 @@ export const AdminUserManagement = () => {
                     </TableCell>
                     <TableCell>
                       <Badge variant={log.success ? "default" : "destructive"}>
-                        {log.success ? "Succès" : "Échec"}
+                        {log.success ? t('admin.history.success') : t('admin.history.failed')}
                       </Badge>
                     </TableCell>
                   </TableRow>
@@ -459,7 +459,7 @@ export const AdminUserManagement = () => {
                 {loginHistory.length === 0 && (
                   <TableRow>
                     <TableCell colSpan={4} className="text-center text-muted-foreground">
-                      Aucun historique de connexion
+                      {t('admin.history.noHistory')}
                     </TableCell>
                   </TableRow>
                 )}
