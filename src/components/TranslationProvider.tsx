@@ -563,6 +563,18 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'faq.insurance.bill.title': '¿Cuánto tiempo hasta que reciba mi factura?',
         'faq.insurance.bill.content': 'Las facturas se envían típicamente dentro de 2-3 semanas después de su visita. También puede acceder a información de facturación a través de nuestro portal de pacientes.',
         
+        // Emergency Resources
+        'emergency.title': 'Recursos de Emergencia',
+        'emergency.crisis': 'Crisis de Salud Mental',
+        'emergency.crisis.number': '988',
+        'emergency.crisis.desc': 'Línea de Prevención del Suicidio y Crisis',
+        'emergency.poison': 'Control de Envenenamiento',
+        'emergency.poison.number': '1-800-222-1222',
+        'emergency.poison.desc': 'Ayuda para Envenenamiento 24/7',
+        'emergency.domestic': 'Violencia Doméstica',
+        'emergency.domestic.number': '1-800-799-7233',
+        'emergency.domestic.desc': 'Línea Nacional de Violencia Doméstica',
+        
         'language.en': 'English',
         'language.es': 'Español',
         'language.fr': 'Français',
@@ -852,6 +864,18 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'faq.insurance.plans.content': 'Oui, nous proposons diverses options et plans de paiement. Parlez à notre service de facturation pour plus d\'informations.',
         'faq.insurance.bill.title': 'Combien de temps avant de recevoir ma facture ?',
         'faq.insurance.bill.content': 'Les factures sont généralement envoyées dans les 2-3 semaines après votre visite. Vous pouvez également accéder aux informations de facturation via notre portail patient.',
+        
+        // Emergency Resources
+        'emergency.title': 'Ressources d\'Urgence',
+        'emergency.crisis': 'Crise de Santé Mentale',
+        'emergency.crisis.number': '3114',
+        'emergency.crisis.desc': 'Numéro National de Prévention du Suicide',
+        'emergency.poison': 'Centre Antipoison',
+        'emergency.poison.number': '01 45 39 92 00',
+        'emergency.poison.desc': 'Aide Antipoison 24/7',
+        'emergency.domestic': 'Violence Domestique',
+        'emergency.domestic.number': '3919',
+        'emergency.domestic.desc': 'Violences Femmes Info - Écoute et Orientation',
         
         'language.en': 'English',
         'language.es': 'Español',
