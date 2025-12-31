@@ -17,8 +17,8 @@ export const FeedbackRating = () => {
   const handleSubmit = () => {
     if (rating === 0) {
       toast({
-        title: "Please select a rating",
-        description: "Your rating helps us improve our service.",
+        title: t('feedback.selectRating'),
+        description: t('feedback.ratingHelps'),
         variant: "destructive"
       });
       return;
@@ -27,8 +27,8 @@ export const FeedbackRating = () => {
     // Simulate submission
     setSubmitted(true);
     toast({
-      title: "Thank you for your feedback!",
-      description: "Your input helps us improve patient care.",
+      title: t('feedback.thankYouToast'),
+      description: t('feedback.inputHelps'),
     });
   };
 
@@ -38,18 +38,29 @@ export const FeedbackRating = () => {
     setFeedback('');
   };
 
+  const getRatingText = (rating: number) => {
+    switch (rating) {
+      case 1: return t('feedback.rating.poor');
+      case 2: return t('feedback.rating.fair');
+      case 3: return t('feedback.rating.good');
+      case 4: return t('feedback.rating.veryGood');
+      case 5: return t('feedback.rating.excellent');
+      default: return '';
+    }
+  };
+
   if (submitted) {
     return (
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-primary">Thank You!</CardTitle>
+          <CardTitle className="text-primary">{t('feedback.thankYou')}</CardTitle>
           <CardDescription>
-            Your feedback has been submitted and will help us improve our services.
+            {t('feedback.submitted')}
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center">
           <Button onClick={handleReset} variant="outline">
-            Submit Another Review
+            {t('feedback.another')}
           </Button>
         </CardContent>
       </Card>
@@ -61,16 +72,16 @@ export const FeedbackRating = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Star className="h-5 w-5 text-primary" />
-          Rate Your Experience
+          {t('feedback.title')}
         </CardTitle>
         <CardDescription>
-          Your feedback helps us improve patient care and service quality.
+          {t('feedback.subtitle')}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="text-center">
           <p className="text-sm text-muted-foreground mb-4">
-            How would you rate your overall experience?
+            {t('feedback.question')}
           </p>
           <div className="flex justify-center gap-1">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -93,21 +104,17 @@ export const FeedbackRating = () => {
           </div>
           {rating > 0 && (
             <p className="text-sm text-primary mt-2 font-medium">
-              {rating === 1 && "Poor"}
-              {rating === 2 && "Fair"}
-              {rating === 3 && "Good"}
-              {rating === 4 && "Very Good"}
-              {rating === 5 && "Excellent"}
+              {getRatingText(rating)}
             </p>
           )}
         </div>
 
         <div>
           <label className="text-sm font-medium mb-2 block">
-            Additional Comments (Optional)
+            {t('feedback.comments')}
           </label>
           <Textarea
-            placeholder="Tell us about your experience, suggestions for improvement, or compliments for our staff..."
+            placeholder={t('feedback.placeholder')}
             value={feedback}
             onChange={(e) => setFeedback(e.target.value)}
             className="min-h-24"
@@ -116,7 +123,7 @@ export const FeedbackRating = () => {
 
         <Button onClick={handleSubmit} className="w-full gap-2">
           <Send className="h-4 w-4" />
-          Submit Feedback
+          {t('feedback.submit')}
         </Button>
       </CardContent>
     </Card>
