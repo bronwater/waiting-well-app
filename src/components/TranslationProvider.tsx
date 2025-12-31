@@ -284,6 +284,19 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'education.quickTips': 'Quick Health Tips',
         'education.quickTipsDesc': 'Daily tips for better health and wellness',
         'education.backToList': 'Back to List',
+        'education.minRead': 'min read',
+        
+        // Article Categories
+        'education.category.cardiovascular': 'Cardiovascular',
+        'education.category.endocrine': 'Endocrine',
+        'education.category.mentalHealth': 'Mental Health',
+        'education.category.orthopedic': 'Orthopedic',
+        'education.category.rehabilitation': 'Rehabilitation',
+        'education.category.pharmacy': 'Pharmacy',
+        'education.category.surgery': 'Surgery',
+        'education.category.nutrition': 'Nutrition',
+        'education.category.sleep': 'Sleep',
+        'education.category.exercise': 'Exercise',
         
         // Article Content
         'article.bloodPressure.title': 'Understanding High Blood Pressure',
@@ -301,6 +314,17 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'article.boneHealth.title': 'Bone Health and Osteoporosis',
         'article.boneHealth.desc': 'Prevention and management of bone health issues as you age.',
         'article.boneHealth.content': 'Osteoporosis is a condition where bones become weak and brittle, increasing fracture risk. Peak bone mass is typically reached by age 30, after which bone density gradually decreases.\n\nPrevention strategies include adequate calcium and vitamin D intake, regular weight-bearing exercise, avoiding smoking and excessive alcohol, and bone density screening. Treatment may include medications that slow bone loss or help build new bone tissue.',
+        
+        // Treatment Content
+        'treatment.physicalTherapy.title': 'Physical Therapy Exercises',
+        'treatment.physicalTherapy.desc': 'Safe exercises to improve mobility and reduce pain.',
+        'treatment.physicalTherapy.type': 'Video Guide',
+        'treatment.medication.title': 'Medication Management',
+        'treatment.medication.desc': 'How to properly take medications and understand side effects.',
+        'treatment.medication.type': 'Interactive Guide',
+        'treatment.surgery.title': 'Pre-Surgery Preparation',
+        'treatment.surgery.desc': 'What to expect before, during, and after surgery.',
+        'treatment.surgery.type': 'Comprehensive Guide',
         
         // Health Tips
         'tip.hydration': 'Stay hydrated by drinking at least 8 glasses of water daily',
@@ -554,16 +578,44 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'education.quickTips': 'Consejos Rápidos de Salud',
         'education.quickTipsDesc': 'Consejos diarios para mejor salud y bienestar',
         'education.backToList': 'Volver a la Lista',
+        'education.minRead': 'min de lectura',
+        
+        // Article Categories
+        'education.category.cardiovascular': 'Cardiovascular',
+        'education.category.endocrine': 'Endocrino',
+        'education.category.mentalHealth': 'Salud Mental',
+        'education.category.orthopedic': 'Ortopédico',
+        'education.category.rehabilitation': 'Rehabilitación',
+        'education.category.pharmacy': 'Farmacia',
+        'education.category.surgery': 'Cirugía',
+        'education.category.nutrition': 'Nutrición',
+        'education.category.sleep': 'Sueño',
+        'education.category.exercise': 'Ejercicio',
         
         // Article Content
         'article.bloodPressure.title': 'Entendiendo la Presión Arterial Alta',
         'article.bloodPressure.desc': 'Aprenda sobre la hipertensión, sus causas, síntomas y estrategias de manejo.',
+        'article.bloodPressure.content': 'La presión arterial alta, o hipertensión, ocurre cuando la fuerza de la sangre contra las paredes arteriales es constantemente demasiado alta. Esta condición afecta a millones de personas en todo el mundo y a menudo se la llama el "asesino silencioso" porque generalmente no presenta síntomas hasta que se desarrollan complicaciones graves.\n\nLas causas incluyen genética, dieta alta en sodio, falta de actividad física, estrés y ciertas condiciones médicas. El monitoreo regular y los cambios en el estilo de vida como ejercicio, dieta saludable y medicación cuando sea necesario pueden manejar efectivamente la hipertensión.',
         'article.diabetes.title': 'Manejando la Diabetes',
         'article.diabetes.desc': 'Guía completa para el manejo de diabetes, dieta y cambios de estilo de vida.',
+        'article.diabetes.content': 'La diabetes es un grupo de trastornos metabólicos caracterizados por niveles altos de azúcar en sangre. La diabetes tipo 1 ocurre cuando el páncreas produce poca o ninguna insulina, mientras que la diabetes tipo 2 se desarrolla cuando el cuerpo se vuelve resistente a la insulina.\n\nEl manejo efectivo incluye monitoreo regular del azúcar en sangre, nutrición balanceada, ejercicio regular y adherencia a la medicación. Trabajar con proveedores de atención médica para desarrollar un plan de manejo personalizado es esencial para la salud a largo plazo.',
         'article.anxiety.title': 'Entendiendo la Ansiedad',
         'article.anxiety.desc': 'Aprenda sobre trastornos de ansiedad, mecanismos de afrontamiento y opciones de tratamiento.',
+        'article.anxiety.content': 'La ansiedad es una emoción normal que se convierte en trastorno cuando interfiere con la vida diaria. Los síntomas comunes incluyen preocupación excesiva, inquietud, fatiga, dificultad para concentrarse y síntomas físicos como latidos cardíacos rápidos.\n\nLas opciones de tratamiento incluyen terapia cognitivo-conductual, medicación, prácticas de mindfulness y cambios en el estilo de vida. Aprender estrategias de afrontamiento como respiración profunda, relajación muscular progresiva y técnicas de anclaje puede ayudar a manejar los síntomas de ansiedad.',
         'article.boneHealth.title': 'Salud Ósea y Osteoporosis',
         'article.boneHealth.desc': 'Prevención y manejo de problemas de salud ósea al envejecer.',
+        'article.boneHealth.content': 'La osteoporosis es una condición donde los huesos se vuelven débiles y frágiles, aumentando el riesgo de fracturas. La masa ósea máxima generalmente se alcanza alrededor de los 30 años, después de lo cual la densidad ósea disminuye gradualmente.\n\nLas estrategias de prevención incluyen ingesta adecuada de calcio y vitamina D, ejercicio regular con carga de peso, evitar fumar y el consumo excesivo de alcohol, y exámenes de densidad ósea. El tratamiento puede incluir medicamentos que ralentizan la pérdida ósea o ayudan a construir nuevo tejido óseo.',
+        
+        // Treatment Content
+        'treatment.physicalTherapy.title': 'Ejercicios de Fisioterapia',
+        'treatment.physicalTherapy.desc': 'Ejercicios seguros para mejorar la movilidad y reducir el dolor.',
+        'treatment.physicalTherapy.type': 'Guía en Video',
+        'treatment.medication.title': 'Manejo de Medicamentos',
+        'treatment.medication.desc': 'Cómo tomar medicamentos correctamente y entender los efectos secundarios.',
+        'treatment.medication.type': 'Guía Interactiva',
+        'treatment.surgery.title': 'Preparación Pre-Quirúrgica',
+        'treatment.surgery.desc': 'Qué esperar antes, durante y después de la cirugía.',
+        'treatment.surgery.type': 'Guía Completa',
         
         // Health Tips
         'tip.hydration': 'Manténgase hidratado bebiendo al menos 8 vasos de agua diariamente',
@@ -816,16 +868,44 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
         'education.quickTips': 'Conseils Santé Rapides',
         'education.quickTipsDesc': 'Conseils quotidiens pour une meilleure santé et bien-être',
         'education.backToList': 'Retour à la Liste',
+        'education.minRead': 'min de lecture',
+        
+        // Article Categories
+        'education.category.cardiovascular': 'Cardiovasculaire',
+        'education.category.endocrine': 'Endocrinien',
+        'education.category.mentalHealth': 'Santé Mentale',
+        'education.category.orthopedic': 'Orthopédique',
+        'education.category.rehabilitation': 'Réhabilitation',
+        'education.category.pharmacy': 'Pharmacie',
+        'education.category.surgery': 'Chirurgie',
+        'education.category.nutrition': 'Nutrition',
+        'education.category.sleep': 'Sommeil',
+        'education.category.exercise': 'Exercice',
         
         // Article Content
         'article.bloodPressure.title': 'Comprendre l\'Hypertension Artérielle',
         'article.bloodPressure.desc': 'Apprenez sur l\'hypertension, ses causes, symptômes et stratégies de gestion.',
+        'article.bloodPressure.content': 'L\'hypertension artérielle se produit lorsque la force du sang contre les parois artérielles est constamment trop élevée. Cette condition affecte des millions de personnes dans le monde et est souvent appelée le "tueur silencieux" car elle ne présente généralement pas de symptômes jusqu\'à ce que des complications graves se développent.\n\nLes causes incluent la génétique, un régime riche en sodium, le manque d\'activité physique, le stress et certaines conditions médicales. Une surveillance régulière et des changements de mode de vie comme l\'exercice, une alimentation saine et les médicaments si nécessaire peuvent gérer efficacement l\'hypertension.',
         'article.diabetes.title': 'Gérer le Diabète',
         'article.diabetes.desc': 'Guide complet pour la gestion du diabète, régime et changements de mode de vie.',
+        'article.diabetes.content': 'Le diabète est un groupe de troubles métaboliques caractérisés par des niveaux élevés de sucre dans le sang. Le diabète de type 1 survient lorsque le pancréas produit peu ou pas d\'insuline, tandis que le diabète de type 2 se développe lorsque le corps devient résistant à l\'insuline.\n\nUne gestion efficace comprend une surveillance régulière de la glycémie, une nutrition équilibrée, de l\'exercice régulier et le respect du traitement médicamenteux. Travailler avec des prestataires de soins pour développer un plan de gestion personnalisé est essentiel pour la santé à long terme.',
         'article.anxiety.title': 'Comprendre l\'Anxiété',
         'article.anxiety.desc': 'Apprenez sur les troubles anxieux, mécanismes d\'adaptation et options de traitement.',
+        'article.anxiety.content': 'L\'anxiété est une émotion normale qui devient un trouble lorsqu\'elle interfère avec la vie quotidienne. Les symptômes courants incluent une inquiétude excessive, l\'agitation, la fatigue, des difficultés de concentration et des symptômes physiques comme des battements cardiaques rapides.\n\nLes options de traitement incluent la thérapie cognitivo-comportementale, les médicaments, les pratiques de pleine conscience et les changements de mode de vie. Apprendre des stratégies d\'adaptation comme la respiration profonde, la relaxation musculaire progressive et les techniques d\'ancrage peut aider à gérer les symptômes d\'anxiété.',
         'article.boneHealth.title': 'Santé Osseuse et Ostéoporose',
         'article.boneHealth.desc': 'Prévention et gestion des problèmes de santé osseuse avec l\'âge.',
+        'article.boneHealth.content': 'L\'ostéoporose est une condition où les os deviennent faibles et fragiles, augmentant le risque de fracture. Le pic de masse osseuse est généralement atteint vers 30 ans, après quoi la densité osseuse diminue progressivement.\n\nLes stratégies de prévention incluent un apport adéquat en calcium et vitamine D, des exercices réguliers avec mise en charge, éviter de fumer et la consommation excessive d\'alcool, et le dépistage de la densité osseuse. Le traitement peut inclure des médicaments qui ralentissent la perte osseuse ou aident à construire de nouveaux tissus osseux.',
+        
+        // Treatment Content
+        'treatment.physicalTherapy.title': 'Exercices de Kinésithérapie',
+        'treatment.physicalTherapy.desc': 'Exercices sûrs pour améliorer la mobilité et réduire la douleur.',
+        'treatment.physicalTherapy.type': 'Guide Vidéo',
+        'treatment.medication.title': 'Gestion des Médicaments',
+        'treatment.medication.desc': 'Comment prendre correctement les médicaments et comprendre les effets secondaires.',
+        'treatment.medication.type': 'Guide Interactif',
+        'treatment.surgery.title': 'Préparation Pré-Chirurgicale',
+        'treatment.surgery.desc': 'À quoi s\'attendre avant, pendant et après la chirurgie.',
+        'treatment.surgery.type': 'Guide Complet',
         
         // Health Tips
         'tip.hydration': 'Restez hydraté en buvant au moins 8 verres d\'eau par jour',

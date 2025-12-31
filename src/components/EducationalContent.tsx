@@ -18,8 +18,8 @@ export const EducationalContent = () => {
         id: 1,
         title: t('article.bloodPressure.title'),
         description: t('article.bloodPressure.desc'),
-        category: "Cardiovascular",
-        duration: "5 min read",
+        category: t('education.category.cardiovascular'),
+        duration: `5 ${t('education.minRead')}`,
         icon: Heart,
         content: t('article.bloodPressure.content')
       },
@@ -27,8 +27,8 @@ export const EducationalContent = () => {
         id: 2,
         title: t('article.diabetes.title'),
         description: t('article.diabetes.desc'),
-        category: "Endocrine",
-        duration: "8 min read",
+        category: t('education.category.endocrine'),
+        duration: `8 ${t('education.minRead')}`,
         icon: Heart,
         content: t('article.diabetes.content')
       },
@@ -36,8 +36,8 @@ export const EducationalContent = () => {
         id: 3,
         title: t('article.anxiety.title'),
         description: t('article.anxiety.desc'),
-        category: "Mental Health",
-        duration: "6 min read",
+        category: t('education.category.mentalHealth'),
+        duration: `6 ${t('education.minRead')}`,
         icon: Brain,
         content: t('article.anxiety.content')
       },
@@ -45,8 +45,8 @@ export const EducationalContent = () => {
         id: 4,
         title: t('article.boneHealth.title'),
         description: t('article.boneHealth.desc'),
-        category: "Orthopedic",
-        duration: "7 min read",
+        category: t('education.category.orthopedic'),
+        duration: `7 ${t('education.minRead')}`,
         icon: Bone,
         content: t('article.boneHealth.content')
       }
@@ -54,27 +54,27 @@ export const EducationalContent = () => {
     treatments: [
       {
         id: 1,
-        title: "Physical Therapy Exercises",
-        description: "Safe exercises to improve mobility and reduce pain.",
-        type: "Video Guide",
+        title: t('treatment.physicalTherapy.title'),
+        description: t('treatment.physicalTherapy.desc'),
+        type: t('treatment.physicalTherapy.type'),
         duration: "15 min",
-        category: "Rehabilitation"
+        category: t('education.category.rehabilitation')
       },
       {
         id: 2,
-        title: "Medication Management",
-        description: "How to properly take medications and understand side effects.",
-        type: "Interactive Guide",
+        title: t('treatment.medication.title'),
+        description: t('treatment.medication.desc'),
+        type: t('treatment.medication.type'),
         duration: "10 min",
-        category: "Pharmacy"
+        category: t('education.category.pharmacy')
       },
       {
         id: 3,
-        title: "Pre-Surgery Preparation",
-        description: "What to expect before, during, and after surgery.",
-        type: "Comprehensive Guide",
+        title: t('treatment.surgery.title'),
+        description: t('treatment.surgery.desc'),
+        type: t('treatment.surgery.type'),
         duration: "20 min",
-        category: "Surgery"
+        category: t('education.category.surgery')
       }
     ]
   };
@@ -261,19 +261,19 @@ export const EducationalContent = () => {
             {[
               {
                 tip: t('tip.hydration'),
-                category: "Nutrition"
+                category: t('education.category.nutrition')
               },
               {
                 tip: t('tip.breathing'),
-                category: "Mental Health"
+                category: t('education.category.mentalHealth')
               },
               {
                 tip: t('tip.sleep'),
-                category: "Sleep"
+                category: t('education.category.sleep')
               },
               {
                 tip: t('tip.exercise'),
-                category: "Exercise"
+                category: t('education.category.exercise')
               }
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
