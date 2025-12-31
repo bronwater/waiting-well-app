@@ -11,37 +11,43 @@ export const GuidanceSection = () => {
       icon: Clock,
       title: t("guidance.stayCalm"),
       description: t("guidance.stayCalm.desc"),
-      type: "info"
+      type: "info",
+      typeLabel: t("guidance.type.info")
     },
     {
       icon: Coffee,
-      title: "Stay Hydrated",
-      description: "Drink water if permitted. Ask staff if you're unsure",
-      type: "tip"
+      title: t("guidance.hydrated"),
+      description: t("guidance.hydrated.desc"),
+      type: "tip",
+      typeLabel: t("guidance.type.tip")
     },
     {
       icon: Phone,
       title: t("guidance.phone"),
       description: t("guidance.phone.desc"),
-      type: "tip"
+      type: "tip",
+      typeLabel: t("guidance.type.tip")
     },
     {
       icon: Wifi,
-      title: "Free WiFi Available",
-      description: "Network: HospitalGuest | No password required",
-      type: "info"
+      title: t("guidance.wifi"),
+      description: t("guidance.wifi.desc"),
+      type: "info",
+      typeLabel: t("guidance.type.info")
     },
     {
       icon: MapPin,
-      title: "Facilities Nearby",
-      description: "Restrooms, cafeteria, and pharmacy on this floor",
-      type: "info"
+      title: t("guidance.facilities"),
+      description: t("guidance.facilities.desc"),
+      type: "info",
+      typeLabel: t("guidance.type.info")
     },
     {
       icon: AlertTriangle,
-      title: "Notify Staff if Symptoms Worsen",
-      description: "Don't hesitate to inform staff of any changes",
-      type: "important"
+      title: t("guidance.notify"),
+      description: t("guidance.notify.desc"),
+      type: "important",
+      typeLabel: t("guidance.type.important")
     }
   ];
 
@@ -58,7 +64,7 @@ export const GuidanceSection = () => {
       <CardHeader>
         <CardTitle className="text-primary">{t("guidance.title")}</CardTitle>
         <p className="text-sm text-muted-foreground">
-          Helpful information and guidance during your visit
+          {t("guidance.subtitle")}
         </p>
       </CardHeader>
       <CardContent>
@@ -74,7 +80,7 @@ export const GuidanceSection = () => {
                   <div className="flex items-center gap-2">
                     <h4 className="font-medium text-sm">{item.title}</h4>
                     <Badge variant={getVariant(item.type)} className="text-xs">
-                      {item.type}
+                      {item.typeLabel}
                     </Badge>
                   </div>
                   <p className="text-sm text-muted-foreground">{item.description}</p>
