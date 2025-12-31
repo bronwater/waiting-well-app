@@ -9,7 +9,8 @@ export const FAQSection = () => {
   
   const faqCategories = {
     general: {
-      title: "General Information",
+      title: t('faq.category.general'),
+      description: t('faq.category.general.desc'),
       icon: HelpCircle,
       color: "blue",
       bgColor: "bg-blue-50 dark:bg-blue-950/20",
@@ -17,21 +18,22 @@ export const FAQSection = () => {
       borderColor: "border-blue-200 dark:border-blue-800",
       questions: [
         {
-          question: "What should I expect during my visit?",
-          answer: "Your visit will include check-in, waiting time, consultation with medical staff, and any necessary procedures or tests. We'll keep you informed throughout the process."
+          question: t('faq.general.expect.title'),
+          answer: t('faq.general.expect.content')
         },
         {
-          question: "How can I update my contact information?",
-          answer: "You can update your contact information at the reception desk or through the medical info section in this app."
+          question: t('faq.general.contact.title'),
+          answer: t('faq.general.contact.content')
         },
         {
-          question: "What forms of payment do you accept?",
-          answer: "We accept cash, credit cards, debit cards, and most insurance plans. Please check with reception for specific insurance coverage."
+          question: t('faq.general.payment.title'),
+          answer: t('faq.general.payment.content')
         }
       ]
     },
     waiting: {
-      title: "Wait Times & Process",
+      title: t('faq.category.waiting'),
+      description: t('faq.category.waiting.desc'),
       icon: Clock,
       color: "amber",
       bgColor: "bg-amber-50 dark:bg-amber-950/20",
@@ -43,17 +45,18 @@ export const FAQSection = () => {
           answer: t("faq.wait.content")
         },
         {
-          question: "Can I leave and come back?",
-          answer: "You may leave briefly, but please inform the front desk. Your position in line will be held for a limited time only."
+          question: t('faq.wait.leave.title'),
+          answer: t('faq.wait.leave.content')
         },
         {
-          question: "How accurate are the wait time estimates?",
-          answer: "Wait times are estimates based on current patient flow and can change due to emergencies or complex cases. We update them regularly."
+          question: t('faq.wait.accuracy.title'),
+          answer: t('faq.wait.accuracy.content')
         }
       ]
     },
     visitors: {
-      title: "Visitors & Support",
+      title: t('faq.category.visitors'),
+      description: t('faq.category.visitors.desc'),
       icon: Users,
       color: "green",
       bgColor: "bg-green-50 dark:bg-green-950/20",
@@ -65,17 +68,18 @@ export const FAQSection = () => {
           answer: t("faq.visitor.content")
         },
         {
-          question: "Can family members stay with me?",
-          answer: "Family members may stay during consultation, but space may be limited. Please check with your healthcare provider."
+          question: t('faq.visitor.family.title'),
+          answer: t('faq.visitor.family.content')
         },
         {
-          question: "Are there facilities for accompanying children?",
-          answer: "We have a family waiting area with basic amenities. Please supervise children at all times."
+          question: t('faq.visitor.children.title'),
+          answer: t('faq.visitor.children.content')
         }
       ]
     },
     medical: {
-      title: "Medical & Emergency",
+      title: t('faq.category.medical'),
+      description: t('faq.category.medical.desc'),
       icon: Heart,
       color: "red",
       bgColor: "bg-red-50 dark:bg-red-950/20",
@@ -91,13 +95,14 @@ export const FAQSection = () => {
           answer: t("faq.pain.content")
         },
         {
-          question: "What if my condition worsens while waiting?",
-          answer: "Please immediately notify staff at the nurse station. We continuously monitor patients and can prioritize urgent cases."
+          question: t('faq.medical.worsening.title'),
+          answer: t('faq.medical.worsening.content')
         }
       ]
     },
     insurance: {
-      title: "Insurance & Billing",
+      title: t('faq.category.insurance'),
+      description: t('faq.category.insurance.desc'),
       icon: Shield,
       color: "purple",
       bgColor: "bg-purple-50 dark:bg-purple-950/20",
@@ -109,12 +114,12 @@ export const FAQSection = () => {
           answer: t("faq.insurance.content")
         },
         {
-          question: "Do you offer payment plans?",
-          answer: "Yes, we offer various payment options and plans. Please speak with our billing department for more information."
+          question: t('faq.insurance.plans.title'),
+          answer: t('faq.insurance.plans.content')
         },
         {
-          question: "How long until I receive my bill?",
-          answer: "Bills are typically sent within 2-3 weeks after your visit. You can also access billing information through our patient portal."
+          question: t('faq.insurance.bill.title'),
+          answer: t('faq.insurance.bill.content')
         }
       ]
     }
@@ -128,7 +133,7 @@ export const FAQSection = () => {
           {t("faq.title")}
         </CardTitle>
         <p className="text-sm text-muted-foreground">
-          Find answers to common questions organized by category
+          {t('faq.subtitle')}
         </p>
       </CardHeader>
       <CardContent className="p-6 pt-0">
@@ -167,11 +172,7 @@ export const FAQSection = () => {
                   {category.title}
                 </h3>
                 <p className={`text-sm mt-2 opacity-80 ${category.textColor}`}>
-                  {key === 'general' && 'Essential information about your visit and our services'}
-                  {key === 'waiting' && 'Everything about wait times and the process'}
-                  {key === 'visitors' && 'Information for family members and visitors'}
-                  {key === 'medical' && 'Medical concerns and emergency procedures'}
-                  {key === 'insurance' && 'Payment, insurance, and billing information'}
+                  {category.description}
                 </p>
               </div>
               
