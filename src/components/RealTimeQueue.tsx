@@ -35,84 +35,11 @@ export const RealTimeQueue = () => {
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  // Mock data - à remplacer par données réelles
   const [patients] = useState<Patient[]>([
-    {
-      id: '1',
-      queueNumber: 1,
-      lastName: 'Martin',
-      firstName: 'Sophie',
-      stage: 'consultation',
-      admissionType: 'trauma',
-      priority: 'critical',
-      waitTime: 15,
-      observations: 'Douleur thoracique sévère',
-      age: 45,
-      phone: '06 12 34 56 78',
-      address: '15 rue de la Paix, 75001 Paris',
-      arrivalTime: '14:30',
-      symptoms: 'Douleur thoracique intense, essoufflement, sueurs froides',
-      medicalHistory: 'Hypertension artérielle, antécédents cardiaques familiaux',
-      allergies: 'Pénicilline',
-      currentMedication: 'Lisinopril 10mg, Aspirine 100mg'
-    },
-    {
-      id: '2',
-      queueNumber: 2,
-      lastName: 'Dubois',
-      firstName: 'Jean',
-      stage: 'waiting',
-      admissionType: 'medicine',
-      priority: 'high',
-      waitTime: 32,
-      observations: 'Fièvre élevée persistante',
-      age: 62,
-      phone: '06 98 76 54 32',
-      address: '8 avenue Victor Hugo, 92100 Boulogne',
-      arrivalTime: '15:10',
-      symptoms: 'Fièvre 39.5°C depuis 3 jours, toux persistante, fatigue',
-      medicalHistory: 'Diabète de type 2, ancien fumeur',
-      allergies: 'Aucune allergie connue',
-      currentMedication: 'Metformine 850mg'
-    },
-    {
-      id: '3',
-      queueNumber: 3,
-      lastName: 'Bernard',
-      firstName: 'Marie',
-      stage: 'triage',
-      admissionType: 'trauma',
-      priority: 'medium',
-      waitTime: 8,
-      observations: 'Entorse cheville gauche',
-      age: 28,
-      phone: '07 45 23 67 89',
-      address: '22 boulevard Saint-Michel, 75005 Paris',
-      arrivalTime: '16:05',
-      symptoms: 'Douleur cheville gauche après chute, gonflement, difficulté à marcher',
-      medicalHistory: 'Aucun antécédent notable',
-      allergies: 'Aucune allergie connue',
-      currentMedication: 'Aucun'
-    },
-    {
-      id: '4',
-      queueNumber: 4,
-      lastName: 'Petit',
-      firstName: 'Lucas',
-      stage: 'waiting',
-      admissionType: 'medicine',
-      priority: 'low',
-      waitTime: 45,
-      observations: 'Consultation routine',
-      age: 35,
-      phone: '06 11 22 33 44',
-      address: '5 rue de Rivoli, 75004 Paris',
-      arrivalTime: '14:20',
-      symptoms: 'Mal de gorge léger, légère fièvre (37.8°C)',
-      medicalHistory: 'Aucun antécédent',
-      allergies: 'Pollen',
-      currentMedication: 'Aucun'
-    },
+    { id: '1', queueNumber: 1, lastName: 'Martin', firstName: 'Sophie', stage: 'consultation', admissionType: 'trauma', priority: 'critical', waitTime: 15, observations: 'Douleur thoracique sévère', age: 45, phone: '06 12 34 56 78', address: '15 rue de la Paix, 75001 Paris', arrivalTime: '14:30', symptoms: 'Douleur thoracique intense, essoufflement', medicalHistory: 'Hypertension artérielle', allergies: 'Pénicilline', currentMedication: 'Lisinopril 10mg' },
+    { id: '2', queueNumber: 2, lastName: 'Dubois', firstName: 'Jean', stage: 'waiting', admissionType: 'medicine', priority: 'high', waitTime: 32, observations: 'Fièvre élevée persistante', age: 62, phone: '06 98 76 54 32', address: '8 avenue Victor Hugo', arrivalTime: '15:10', symptoms: 'Fièvre 39.5°C depuis 3 jours', medicalHistory: 'Diabète de type 2', allergies: 'Aucune', currentMedication: 'Metformine 850mg' },
+    { id: '3', queueNumber: 3, lastName: 'Bernard', firstName: 'Marie', stage: 'triage', admissionType: 'trauma', priority: 'medium', waitTime: 8, observations: 'Entorse cheville gauche', age: 28, phone: '07 45 23 67 89', address: '22 boulevard Saint-Michel', arrivalTime: '16:05', symptoms: 'Douleur cheville gauche après chute', medicalHistory: 'Aucun antécédent', allergies: 'Aucune', currentMedication: 'Aucun' },
+    { id: '4', queueNumber: 4, lastName: 'Petit', firstName: 'Lucas', stage: 'waiting', admissionType: 'medicine', priority: 'low', waitTime: 45, observations: 'Consultation routine', age: 35, phone: '06 11 22 33 44', address: '5 rue de Rivoli', arrivalTime: '14:20', symptoms: 'Mal de gorge léger', medicalHistory: 'Aucun antécédent', allergies: 'Pollen', currentMedication: 'Aucun' },
   ]);
 
   const getPriorityColor = (priority: string) => {
@@ -127,26 +54,26 @@ export const RealTimeQueue = () => {
 
   const getPriorityLabel = (priority: string) => {
     switch (priority) {
-      case 'critical': return 'Critique';
-      case 'high': return 'Élevée';
-      case 'medium': return 'Moyenne';
-      case 'low': return 'Basse';
+      case 'critical': return t('admin.queue.critical');
+      case 'high': return t('admin.queue.high');
+      case 'medium': return t('admin.queue.medium');
+      case 'low': return t('admin.queue.low');
       default: return priority;
     }
   };
 
   const getStageLabel = (stage: string) => {
     switch (stage) {
-      case 'triage': return 'Tri';
-      case 'waiting': return 'Attente';
-      case 'consultation': return 'Consultation';
-      case 'treatment': return 'Traitement';
+      case 'triage': return t('admin.queue.stageTriage');
+      case 'waiting': return t('admin.queue.stageWaiting');
+      case 'consultation': return t('admin.queue.stageConsultation');
+      case 'treatment': return t('admin.queue.stageTreatment');
       default: return stage;
     }
   };
 
   const getAdmissionLabel = (type: string) => {
-    return type === 'medicine' ? 'Médecine' : 'Traumatologie';
+    return type === 'medicine' ? t('admin.queue.medicine') : t('admin.queue.trauma');
   };
 
   const filteredPatients = patients.filter(patient => {
@@ -162,120 +89,48 @@ export const RealTimeQueue = () => {
 
   return (
     <>
-      {/* Dialog pour les détails du patient */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <User className="h-5 w-5" />
-              Détails du patient #{selectedPatient?.queueNumber}
+              {t('admin.patient.details')} #{selectedPatient?.queueNumber}
             </DialogTitle>
-            <DialogDescription>
-              Informations complètes du patient
-            </DialogDescription>
+            <DialogDescription>{t('admin.patient.fullInfo')}</DialogDescription>
           </DialogHeader>
           
           {selectedPatient && (
             <div className="space-y-6">
-              {/* Informations personnelles */}
               <div className="space-y-3">
-                <h3 className="font-semibold text-lg border-b pb-2">Informations personnelles</h3>
+                <h3 className="font-semibold text-lg border-b pb-2">{t('admin.patient.personalInfo')}</h3>
                 <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-sm text-muted-foreground">Nom complet</p>
-                    <p className="font-medium">{selectedPatient.firstName} {selectedPatient.lastName}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Âge</p>
-                    <p className="font-medium">{selectedPatient.age} ans</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground flex items-center gap-1">
-                      <Phone className="h-3 w-3" /> Téléphone
-                    </p>
-                    <p className="font-medium">{selectedPatient.phone}</p>
-                  </div>
-                  <div className="col-span-2">
-                    <p className="text-sm text-muted-foreground flex items-center gap-1">
-                      <MapPin className="h-3 w-3" /> Adresse
-                    </p>
-                    <p className="font-medium">{selectedPatient.address}</p>
-                  </div>
+                  <div><p className="text-sm text-muted-foreground">{t('admin.patient.fullName')}</p><p className="font-medium">{selectedPatient.firstName} {selectedPatient.lastName}</p></div>
+                  <div><p className="text-sm text-muted-foreground">{t('admin.patient.age')}</p><p className="font-medium">{selectedPatient.age} {t('admin.patient.years')}</p></div>
+                  <div><p className="text-sm text-muted-foreground flex items-center gap-1"><Phone className="h-3 w-3" /> {t('admin.patient.phone')}</p><p className="font-medium">{selectedPatient.phone}</p></div>
+                  <div className="col-span-2"><p className="text-sm text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {t('admin.patient.address')}</p><p className="font-medium">{selectedPatient.address}</p></div>
                 </div>
               </div>
-
-              {/* Informations de visite */}
               <div className="space-y-3">
-                <h3 className="font-semibold text-lg border-b pb-2">Informations de visite</h3>
+                <h3 className="font-semibold text-lg border-b pb-2">{t('admin.patient.visitInfo')}</h3>
                 <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-sm text-muted-foreground flex items-center gap-1">
-                      <Calendar className="h-3 w-3" /> Heure d'arrivée
-                    </p>
-                    <p className="font-medium">{selectedPatient.arrivalTime}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Temps d'attente</p>
-                    <p className="font-medium">{selectedPatient.waitTime} minutes</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Type d'admission</p>
-                    <p className="font-medium">{getAdmissionLabel(selectedPatient.admissionType)}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Étape actuelle</p>
-                    <Badge variant="outline">{getStageLabel(selectedPatient.stage)}</Badge>
-                  </div>
-                  <div className="col-span-2">
-                    <p className="text-sm text-muted-foreground">Priorité</p>
-                    <div className="flex items-center gap-2 mt-1">
-                      <div className={`w-3 h-3 rounded-full ${getPriorityColor(selectedPatient.priority)}`} />
-                      <span className="font-medium">{getPriorityLabel(selectedPatient.priority)}</span>
-                    </div>
-                  </div>
+                  <div><p className="text-sm text-muted-foreground">{t('admin.patient.arrivalTime')}</p><p className="font-medium">{selectedPatient.arrivalTime}</p></div>
+                  <div><p className="text-sm text-muted-foreground">{t('admin.patient.waitTime')}</p><p className="font-medium">{selectedPatient.waitTime} {t('admin.patient.minutes')}</p></div>
+                  <div><p className="text-sm text-muted-foreground">{t('admin.patient.admissionType')}</p><p className="font-medium">{getAdmissionLabel(selectedPatient.admissionType)}</p></div>
+                  <div><p className="text-sm text-muted-foreground">{t('admin.patient.currentStage')}</p><Badge variant="outline">{getStageLabel(selectedPatient.stage)}</Badge></div>
                 </div>
               </div>
-
-              {/* Informations médicales */}
               <div className="space-y-3">
-                <h3 className="font-semibold text-lg border-b pb-2 flex items-center gap-2">
-                  <FileText className="h-5 w-5" />
-                  Informations médicales
-                </h3>
+                <h3 className="font-semibold text-lg border-b pb-2"><FileText className="h-5 w-5 inline mr-2" />{t('admin.patient.medicalInfo')}</h3>
                 <div className="space-y-3">
-                  <div>
-                    <p className="text-sm text-muted-foreground font-medium">Symptômes</p>
-                    <p className="text-sm mt-1 p-3 bg-muted rounded-lg">{selectedPatient.symptoms}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground font-medium">Antécédents médicaux</p>
-                    <p className="text-sm mt-1 p-3 bg-muted rounded-lg">{selectedPatient.medicalHistory}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground font-medium">Allergies</p>
-                    <p className="text-sm mt-1 p-3 bg-muted rounded-lg">{selectedPatient.allergies}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground font-medium">Médicaments actuels</p>
-                    <p className="text-sm mt-1 p-3 bg-muted rounded-lg">{selectedPatient.currentMedication}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground font-medium">Observations</p>
-                    <p className="text-sm mt-1 p-3 bg-red-50 border border-red-200 rounded-lg">{selectedPatient.observations}</p>
-                  </div>
+                  <div><p className="text-sm text-muted-foreground font-medium">{t('admin.patient.symptoms')}</p><p className="text-sm mt-1 p-3 bg-muted rounded-lg">{selectedPatient.symptoms}</p></div>
+                  <div><p className="text-sm text-muted-foreground font-medium">{t('admin.patient.medicalHistory')}</p><p className="text-sm mt-1 p-3 bg-muted rounded-lg">{selectedPatient.medicalHistory}</p></div>
+                  <div><p className="text-sm text-muted-foreground font-medium">{t('admin.patient.allergies')}</p><p className="text-sm mt-1 p-3 bg-muted rounded-lg">{selectedPatient.allergies}</p></div>
+                  <div><p className="text-sm text-muted-foreground font-medium">{t('admin.patient.currentMedication')}</p><p className="text-sm mt-1 p-3 bg-muted rounded-lg">{selectedPatient.currentMedication}</p></div>
                 </div>
               </div>
-
-              {/* Actions */}
               <div className="flex gap-3 pt-4 border-t">
-                <Button className="flex-1 gap-2">
-                  <CheckCircle className="h-4 w-4" />
-                  Prendre en charge
-                </Button>
-                <Button variant="destructive" className="flex-1 gap-2">
-                  <XCircle className="h-4 w-4" />
-                  Annuler
-                </Button>
+                <Button className="flex-1 gap-2"><CheckCircle className="h-4 w-4" />{t('admin.queue.takeCharge')}</Button>
+                <Button variant="destructive" className="flex-1 gap-2"><XCircle className="h-4 w-4" />{t('admin.queue.cancelAction')}</Button>
               </div>
             </div>
           )}
@@ -283,107 +138,68 @@ export const RealTimeQueue = () => {
       </Dialog>
 
       <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <CardTitle className="flex items-center gap-2">
-              <Filter className="h-5 w-5" />
-              Filtres
-            </CardTitle>
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-              <Select value={admissionFilter} onValueChange={setAdmissionFilter}>
-                <SelectTrigger className="w-full sm:w-[180px]">
-                  <SelectValue placeholder="Type d'admission" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Tous les types</SelectItem>
-                  <SelectItem value="medicine">Médecine</SelectItem>
-                  <SelectItem value="trauma">Traumatologie</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select value={priorityFilter} onValueChange={setPriorityFilter}>
-                <SelectTrigger className="w-full sm:w-[180px]">
-                  <SelectValue placeholder="Priorité" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Toutes priorités</SelectItem>
-                  <SelectItem value="critical">Critique</SelectItem>
-                  <SelectItem value="high">Élevée</SelectItem>
-                  <SelectItem value="medium">Moyenne</SelectItem>
-                  <SelectItem value="low">Basse</SelectItem>
-                </SelectContent>
-              </Select>
+        <Card>
+          <CardHeader>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <CardTitle className="flex items-center gap-2"><Filter className="h-5 w-5" />{t('admin.queue.filters')}</CardTitle>
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <Select value={admissionFilter} onValueChange={setAdmissionFilter}>
+                  <SelectTrigger className="w-full sm:w-[180px]"><SelectValue placeholder={t('admin.queue.admissionType')} /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">{t('admin.queue.allTypes')}</SelectItem>
+                    <SelectItem value="medicine">{t('admin.queue.medicine')}</SelectItem>
+                    <SelectItem value="trauma">{t('admin.queue.trauma')}</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Select value={priorityFilter} onValueChange={setPriorityFilter}>
+                  <SelectTrigger className="w-full sm:w-[180px]"><SelectValue placeholder={t('admin.stats.priority')} /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">{t('admin.queue.allPriorities')}</SelectItem>
+                    <SelectItem value="critical">{t('admin.queue.critical')}</SelectItem>
+                    <SelectItem value="high">{t('admin.queue.high')}</SelectItem>
+                    <SelectItem value="medium">{t('admin.queue.medium')}</SelectItem>
+                    <SelectItem value="low">{t('admin.queue.low')}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="rounded-lg border overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[80px]">N°</TableHead>
-                  <TableHead>Nom</TableHead>
-                  <TableHead>Prénom</TableHead>
-                  <TableHead>Étape</TableHead>
-                  <TableHead>Type admission</TableHead>
-                  <TableHead>Priorité</TableHead>
-                  <TableHead>Temps d'attente</TableHead>
-                  <TableHead>Observations</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredPatients.map((patient) => (
-                  <TableRow key={patient.id}>
-                    <TableCell className="font-bold">#{patient.queueNumber}</TableCell>
-                    <TableCell className="font-medium">{patient.lastName}</TableCell>
-                    <TableCell>{patient.firstName}</TableCell>
-                    <TableCell>
-                      <Badge variant="outline">{getStageLabel(patient.stage)}</Badge>
-                    </TableCell>
-                    <TableCell>{getAdmissionLabel(patient.admissionType)}</TableCell>
-                    <TableCell>
-                      <div className="flex items-center gap-2">
-                        <div className={`w-3 h-3 rounded-full ${getPriorityColor(patient.priority)}`} />
-                        <span className="text-sm">{getPriorityLabel(patient.priority)}</span>
-                      </div>
-                    </TableCell>
-                    <TableCell>{patient.waitTime} min</TableCell>
-                    <TableCell className="max-w-[200px]">
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="gap-2"
-                        onClick={() => handleViewDetails(patient)}
-                      >
-                        <Eye className="h-4 w-4" />
-                        Voir détails
-                      </Button>
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end gap-2">
-                        <Button size="sm" variant="default" className="gap-2">
-                          <CheckCircle className="h-4 w-4" />
-                          Prendre en charge
-                        </Button>
-                        <Button size="sm" variant="destructive" className="gap-2">
-                          <XCircle className="h-4 w-4" />
-                          Annuler
-                        </Button>
-                      </div>
-                    </TableCell>
+          </CardHeader>
+          <CardContent>
+            <div className="rounded-lg border overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[80px]">{t('admin.queue.number')}</TableHead>
+                    <TableHead>{t('admin.queue.lastName')}</TableHead>
+                    <TableHead>{t('admin.queue.firstName')}</TableHead>
+                    <TableHead>{t('admin.queue.stage')}</TableHead>
+                    <TableHead>{t('admin.queue.admissionType')}</TableHead>
+                    <TableHead>{t('admin.stats.priority')}</TableHead>
+                    <TableHead>{t('admin.stats.waitTime')}</TableHead>
+                    <TableHead>{t('admin.queue.observations')}</TableHead>
+                    <TableHead className="text-right">{t('admin.users.actions')}</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-          {filteredPatients.length === 0 && (
-            <div className="text-center py-8 text-muted-foreground">
-              Aucun patient ne correspond aux filtres sélectionnés
+                </TableHeader>
+                <TableBody>
+                  {filteredPatients.map((patient) => (
+                    <TableRow key={patient.id}>
+                      <TableCell className="font-bold">#{patient.queueNumber}</TableCell>
+                      <TableCell className="font-medium">{patient.lastName}</TableCell>
+                      <TableCell>{patient.firstName}</TableCell>
+                      <TableCell><Badge variant="outline">{getStageLabel(patient.stage)}</Badge></TableCell>
+                      <TableCell>{getAdmissionLabel(patient.admissionType)}</TableCell>
+                      <TableCell><div className="flex items-center gap-2"><div className={`w-3 h-3 rounded-full ${getPriorityColor(patient.priority)}`} /><span className="text-sm">{getPriorityLabel(patient.priority)}</span></div></TableCell>
+                      <TableCell>{patient.waitTime} min</TableCell>
+                      <TableCell className="max-w-[200px]"><Button variant="ghost" size="sm" className="gap-2" onClick={() => handleViewDetails(patient)}><Eye className="h-4 w-4" />{t('admin.queue.viewDetails')}</Button></TableCell>
+                      <TableCell className="text-right"><div className="flex justify-end gap-2"><Button size="sm" variant="default" className="gap-2"><CheckCircle className="h-4 w-4" />{t('admin.queue.takeCharge')}</Button><Button size="sm" variant="destructive" className="gap-2"><XCircle className="h-4 w-4" />{t('admin.queue.cancelAction')}</Button></div></TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
-          )}
-        </CardContent>
-      </Card>
+            {filteredPatients.length === 0 && <div className="text-center py-8 text-muted-foreground">{t('admin.queue.noPatients')}</div>}
+          </CardContent>
+        </Card>
       </div>
     </>
   );

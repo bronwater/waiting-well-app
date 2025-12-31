@@ -20,21 +20,28 @@ interface PatientRecord {
 }
 
 export const AdminStatistics = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [searchName, setSearchName] = useState("");
   const [searchDate, setSearchDate] = useState("");
   const [searchId, setSearchId] = useState("");
   const [dateFilter, setDateFilter] = useState("today");
 
-  // Mock data for statistics
+  // Mock data for statistics - translated day names
+  const getDayNames = () => {
+    if (language === 'es') return ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+    if (language === 'fr') return ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+    return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  };
+
+  const dayNames = getDayNames();
   const dailyAverages = [
-    { day: 'Lun', patients: 45, waitTime: 32 },
-    { day: 'Mar', patients: 52, waitTime: 38 },
-    { day: 'Mer', patients: 48, waitTime: 35 },
-    { day: 'Jeu', patients: 55, waitTime: 42 },
-    { day: 'Ven', patients: 60, waitTime: 45 },
-    { day: 'Sam', patients: 38, waitTime: 28 },
-    { day: 'Dim', patients: 35, waitTime: 25 },
+    { day: dayNames[0], patients: 45, waitTime: 32 },
+    { day: dayNames[1], patients: 52, waitTime: 38 },
+    { day: dayNames[2], patients: 48, waitTime: 35 },
+    { day: dayNames[3], patients: 55, waitTime: 42 },
+    { day: dayNames[4], patients: 60, waitTime: 45 },
+    { day: dayNames[5], patients: 38, waitTime: 28 },
+    { day: dayNames[6], patients: 35, waitTime: 25 },
   ];
 
   const hourlyAverages = [
@@ -49,10 +56,10 @@ export const AdminStatistics = () => {
   ];
 
   const priorityWaitTimes = [
-    { priority: 'Critique (Rouge)', avgTime: 5, color: '#ef4444' },
-    { priority: 'Urgent (Orange)', avgTime: 15, color: '#f97316' },
-    { priority: 'Semi-urgent (Jaune)', avgTime: 45, color: '#eab308' },
-    { priority: 'Non-urgent (Vert)', avgTime: 90, color: '#22c55e' },
+    { priority: t('admin.priority.criticalRed'), avgTime: 5, color: '#ef4444' },
+    { priority: t('admin.priority.urgentOrange'), avgTime: 15, color: '#f97316' },
+    { priority: t('admin.priority.semiUrgentYellow'), avgTime: 45, color: '#eab308' },
+    { priority: t('admin.priority.nonUrgentGreen'), avgTime: 90, color: '#22c55e' },
   ];
 
   const doctorPerformance = [
@@ -80,7 +87,7 @@ export const AdminStatistics = () => {
 
   const handleExportCSV = () => {
     const csv = [
-      ['ID', 'Nom', 'Date', 'Priorité', 'Temps d\'attente (min)', 'Médecin', 'Statut'],
+      ['ID', t('admin.users.name'), t('admin.stats.date'), t('admin.stats.priority'), t('admin.stats.waitTime'), t('admin.stats.doctor'), t('admin.stats.statusLabel')],
       ...filteredRecords.map(r => [r.id, r.name, r.date, r.priority, r.waitTime, r.doctor, r.status])
     ].map(row => row.join(',')).join('\n');
 
@@ -90,18 +97,26 @@ export const AdminStatistics = () => {
     a.href = url;
     a.download = `patients-export-${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
-    toast.success("Export CSV réussi");
+    toast.success(t('admin.stats.exportSuccess'));
   };
 
   const handleExportExcel = () => {
-    // In a real app, you'd use a library like xlsx
-    toast.success("Export Excel en cours de développement");
+    toast.success(t('admin.stats.exportDev'));
   };
 
   const stats = {
     cancellationRate: 8.5,
     transferRate: 12.3,
     completionRate: 79.2,
+  };
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'completed': return t('admin.stats.completed');
+      case 'cancelled': return t('admin.stats.cancelled');
+      case 'transferred': return t('admin.stats.transferred');
+      default: return status;
+    }
   };
 
   return (
@@ -111,27 +126,27 @@ export const AdminStatistics = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Search className="h-5 w-5" />
-            Rechercher un patient
+            {t('admin.stats.searchPatient')}
           </CardTitle>
           <CardDescription>
-            Recherchez par nom, date ou ID patient
+            {t('admin.stats.searchDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <Input
-              placeholder="Nom du patient"
+              placeholder={t('admin.stats.patientName')}
               value={searchName}
               onChange={(e) => setSearchName(e.target.value)}
             />
             <Input
               type="date"
-              placeholder="Date"
+              placeholder={t('admin.stats.date')}
               value={searchDate}
               onChange={(e) => setSearchDate(e.target.value)}
             />
             <Input
-              placeholder="ID Patient"
+              placeholder={t('admin.stats.patientId')}
               value={searchId}
               onChange={(e) => setSearchId(e.target.value)}
             />
@@ -154,7 +169,7 @@ export const AdminStatistics = () => {
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Taux de complétion
+              {t('admin.stats.completionRate')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -164,7 +179,7 @@ export const AdminStatistics = () => {
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Taux d'annulation
+              {t('admin.stats.cancellationRate')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -174,7 +189,7 @@ export const AdminStatistics = () => {
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Taux de transfert
+              {t('admin.stats.transferRate')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -187,8 +202,8 @@ export const AdminStatistics = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Moyennes par jour</CardTitle>
-            <CardDescription>Patients et temps d'attente moyen</CardDescription>
+            <CardTitle>{t('admin.stats.dailyAvg')}</CardTitle>
+            <CardDescription>{t('admin.stats.dailyAvgDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -198,8 +213,8 @@ export const AdminStatistics = () => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="patients" stroke="hsl(var(--primary))" name="Patients" />
-                <Line type="monotone" dataKey="waitTime" stroke="#f97316" name="Temps (min)" />
+                <Line type="monotone" dataKey="patients" stroke="hsl(var(--primary))" name={t('admin.stats.patients')} />
+                <Line type="monotone" dataKey="waitTime" stroke="#f97316" name={t('admin.stats.timeMin')} />
               </LineChart>
             </ResponsiveContainer>
           </CardContent>
@@ -207,8 +222,8 @@ export const AdminStatistics = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Moyennes par heure</CardTitle>
-            <CardDescription>Affluence horaire</CardDescription>
+            <CardTitle>{t('admin.stats.hourlyAvg')}</CardTitle>
+            <CardDescription>{t('admin.stats.hourlyAvgDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -217,7 +232,7 @@ export const AdminStatistics = () => {
                 <XAxis dataKey="hour" />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="patients" fill="hsl(var(--primary))" name="Patients" />
+                <Bar dataKey="patients" fill="hsl(var(--primary))" name={t('admin.stats.patients')} />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
@@ -228,8 +243,8 @@ export const AdminStatistics = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Délai moyen par priorité</CardTitle>
-            <CardDescription>Temps d'attente en minutes</CardDescription>
+            <CardTitle>{t('admin.stats.avgByPriority')}</CardTitle>
+            <CardDescription>{t('admin.stats.waitTimeMin')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -256,8 +271,8 @@ export const AdminStatistics = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Temps de prise en charge par praticien</CardTitle>
-            <CardDescription>Temps moyen et nombre de patients</CardDescription>
+            <CardTitle>{t('admin.stats.doctorPerformance')}</CardTitle>
+            <CardDescription>{t('admin.stats.doctorPerformanceDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -267,8 +282,8 @@ export const AdminStatistics = () => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="avgTime" fill="hsl(var(--primary))" name="Temps moyen (min)" />
-                <Bar dataKey="patients" fill="#10b981" name="Patients traités" />
+                <Bar dataKey="avgTime" fill="hsl(var(--primary))" name={t('admin.stats.avgTimeMin')} />
+                <Bar dataKey="patients" fill="#10b981" name={t('admin.stats.treatedPatients')} />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
@@ -278,29 +293,29 @@ export const AdminStatistics = () => {
       {/* Search Results Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Résultats de recherche</CardTitle>
+          <CardTitle>{t('admin.stats.searchResults')}</CardTitle>
           <CardDescription>
-            {filteredRecords.length} patient(s) trouvé(s)
+            {filteredRecords.length} {t('admin.stats.patientsFound')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>ID</TableHead>
-                <TableHead>Nom</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead>Priorité</TableHead>
-                <TableHead>Temps d'attente</TableHead>
-                <TableHead>Médecin</TableHead>
-                <TableHead>Statut</TableHead>
+                <TableHead>{t('admin.stats.id')}</TableHead>
+                <TableHead>{t('admin.users.name')}</TableHead>
+                <TableHead>{t('admin.stats.date')}</TableHead>
+                <TableHead>{t('admin.stats.priority')}</TableHead>
+                <TableHead>{t('admin.stats.waitTime')}</TableHead>
+                <TableHead>{t('admin.stats.doctor')}</TableHead>
+                <TableHead>{t('admin.stats.statusLabel')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredRecords.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={7} className="text-center text-muted-foreground">
-                    Aucun patient trouvé
+                    {t('admin.stats.noPatient')}
                   </TableCell>
                 </TableRow>
               ) : (
@@ -327,9 +342,7 @@ export const AdminStatistics = () => {
                         record.status === 'cancelled' ? 'bg-red-100 text-red-800' :
                         'bg-blue-100 text-blue-800'
                       }`}>
-                        {record.status === 'completed' ? 'Terminé' :
-                         record.status === 'cancelled' ? 'Annulé' :
-                         'Transféré'}
+                        {getStatusLabel(record.status)}
                       </span>
                     </TableCell>
                   </TableRow>
